@@ -1,0 +1,17 @@
+# Zależności
+node_modules/
+
+# System operacyjny
+.DS_Store
+Thumbs.db
+*.log
+
+# Środowisko / sekrety
+.env
+.env.local
+.env.*.local
+
+# iCloud
+*.icloud
+
+# UWAGA: starter-theme/dist/ commitujemy świadomie (serwer nie buduje) — patrz szablony-startowe/README.md

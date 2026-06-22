@@ -1,0 +1,20 @@
+/*
+Theme Name: Starter Theme
+Theme URI: https://example.com
+Author: Twoje Imię
+Author URI: https://example.com
+Description: Startowy custom classic theme — Tailwind v4 + Vite, ACF, GSAP + Lenis. Bez Elementora i page-builderów.
+Version: 1.0.0
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: starter-theme
+*/
+
+/*
+  Ten plik to TYLKO nagłówek motywu (metadane dla WordPressa).
+  Produkcyjny CSS powstaje z Tailwind/Vite (src/styles.css → dist/).
+  Nie pisz tu styli — pisz klasami Tailwind w plikach .php.
+*/

@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/*
+  Tailwind v4: wskaż pliki do skanowania pod użyte klasy (purge).
+  Ścieżki względem TEGO pliku (src/). `../**/*.php` pokrywa wszystkie szablony motywu.
+*/
+@source "../**/*.php";
+@source "./**/*.js";
+
+/* Własne tokeny i warstwy bazowe. */
+@layer base {
+  :root {
+    --brand: #16a34a;
+  }
+
+  /*
+    Domyślny stan elementów animowanych wejściem: ukryte do czasu animacji GSAP.
+    Bramka prefers-reduced-motion przywraca pełną widoczność — treść jest od razu
+    czytelna dla osób z ograniczonym ruchem oraz gdy JS się nie wykona.
+  */
+  [data-animate] {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-animate] {
+      opacity: 1;
+    }
+  }
+}

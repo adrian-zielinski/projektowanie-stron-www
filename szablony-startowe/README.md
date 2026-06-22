@@ -1,0 +1,109 @@
+# Szablony startowe
+
+Gotowe assety startowe dla projektu „Projektowanie stron WWW". Na razie zawiera jeden element:
+
+- **`starter-theme/`** — minimalny, działający **custom classic theme** WordPress. Stack: PHP + Tailwind v4 (Vite) + ACF + GSAP/Lenis. Bez Elementora i page-builderów — cały wygląd i animacje w kodzie.
+
+---
+
+## starter-theme — szybki start
+
+### Wymagania
+
+- Node.js 18+ (do builda Tailwind/Vite)
+- WordPress 6.5+ na PHP 8.1+
+- Wtyczka **ACF** (Advanced Custom Fields) — sekcja hero czyta pola ACF (działa też bez niej, na fallbackach)
+- Lokalne środowisko WP: **LocalWP** (najprościej) lub **wp-env**
+
+### 1. Instalacja zależności
+
+W katalogu motywu:
+
+```bash
+cd starter-theme
+npm install
+```
+
+### 2. Praca lokalna (HMR)
+
+```bash
+npm run dev
+```
+
+Vite podnosi dev server na `http://localhost:5173` z hot reloadem. Żeby WordPress ładował assety z dev servera zamiast z `dist/`, dodaj w `wp-config.php` swojej lokalnej instalacji:
+
+```php
+define('IS_VITE_DEV', true);
+```
+
+Bez tej stałej (czyli na produkcji) WP ładuje zbudowane pliki z `dist/` wg manifestu.
+
+### 3. Build produkcyjny
+
+```bash
+npm run build
+```
+
+Tworzy `dist/` razem z `dist/.vite/manifest.json`. `functions.php` czyta manifest i enqueue'uje wynikowe CSS/JS. **Build commituj do repo** — serwer nie buduje niczego.
+
+### 4. Konfiguracja w WordPressie
+
+1. Wgraj cały folder `starter-theme/` (wraz z `dist/`) do `wp-content/themes/`.
+2. `Wygląd → Motywy` → aktywuj **Starter Theme**.
+3. `Ustawienia → Czytanie` → ustaw stronę główną jako **stronę statyczną**, żeby zadziałał `front-page.php`.
+4. `Wygląd → Menu` → przypisz menu do lokalizacji **Menu główne** i **Menu w stopce**.
+5. Zainstaluj i aktywuj **ACF**. Utwórz grupę pól przypiętą do strony głównej z polami sekcji hero:
+   `hero_naglowek` (Text), `hero_podtytul` (Textarea), `hero_cta_label` (Text), `hero_cta_link` (Link), `hero_obraz` (Image, format: Array).
+
+> Sekcja hero ma fallbacki — wyświetli się sensownie nawet zanim skonfigurujesz ACF.
+
+### 5. Deploy na serwer (LH.pl / Mango lub dowolny)
+
+Motyw ląduje w `wp-content/themes/starter-theme/`. Wgrasz go jednym ze sposobów:
+
+- **SFTP/FTP** (np. FileZilla) — wgraj cały folder motywu **wraz z `dist/`**.
+- **SSH (rsync)** — szybsze dla większych zmian:
+  ```bash
+  rsync -avz --delete ./starter-theme/ user@serwer:~/domains/twojadomena.pl/public_html/wp-content/themes/starter-theme/
+  ```
+- **Git** przez SSH — `git pull` wprost do katalogu themes (pamiętaj, że `dist/` jest w repo).
+
+Po każdym deployu nowego `dist/`: **LiteSpeed → Toolbox → Purge All**, inaczej cache poda stary CSS/JS.
+
+---
+
+## Struktura motywu
+
+```
+starter-theme/
+├── style.css                      ← nagłówek motywu (metadane dla WP)
+├── functions.php                  ← theme supports + enqueue Vite + ACF Local JSON
+├── front-page.php                 ← strona główna (składa sekcje z ACF)
+├── home.php                       ← lista wpisów (blog)
+├── index.php                      ← fallback hierarchii szablonów
+├── page.php                       ← pojedyncza strona
+├── single.php                     ← pojedynczy wpis
+├── archive.php                    ← archiwa (kategorie, tagi, daty)
+├── search.php                     ← wyniki wyszukiwania
+├── 404.php                        ← strona błędu 404
+├── header.php / footer.php        ← wp_head() / wp_footer() (obowiązkowe)
+├── template-parts/
+│   ├── section-hero.php           ← sekcja hero z pól ACF (z fallbackami)
+│   └── content/
+│       ├── content.php            ← karta wpisu (pętla)
+│       └── content-none.php       ← komunikat „brak treści"
+├── inc/
+│   └── seo-head.php               ← meta + JSON-LD wpinane w wp_head
+├── acf-json/                      ← definicje pól ACF (Local JSON, wersjonowane w git)
+├── src/
+│   ├── styles.css                 ← @import Tailwind + @source (purge)
+│   └── main.js                    ← entry: import CSS + GSAP/Lenis (reduced-motion gate)
+├── dist/                          ← output Vite (commitowany) — to ładuje WP
+├── package.json                   ← skrypty dev/build
+├── vite.config.js                 ← Vite + Tailwind v4, base = ścieżka motywu
+└── .gitignore
+```
+
+## Zmiana nazwy motywu
+
+Nazwa folderu, `Theme Name` w `style.css` oraz `base`/`THEME_FOLDER` w `vite.config.js` muszą być spójne — `base` wskazuje na `/wp-content/themes/<folder>/dist/`. Po zmianie nazwy zbuduj ponownie (`npm run build`).

@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.log
+
+# dist/ commitujemy (strategia z 06-stack-technologiczny.md sekcja 6.3) —
+# serwer nie buduje niczego. Jeśli przejdziesz na build w CI, odkomentuj:
+# dist/

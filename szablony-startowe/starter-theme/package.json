@@ -1,0 +1,21 @@
+{
+  "name": "starter-theme",
+  "version": "1.0.0",
+  "description": "Startowy custom classic theme WordPress — Tailwind v4 + Vite, GSAP + Lenis. Bez Elementora.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18"
+  }
+}
