@@ -72,6 +72,23 @@ add_action( 'acf/init', function () {
 		),
 	);
 
+	// HERO SPLIT (jasne tło, tekst obok kolażu zdjęć — częsty wzorzec z generatorów)
+	$layouts['hero-split'] = array(
+		'key' => 'layout_hero_split', 'name' => 'hero-split', 'label' => 'Hero split (jasne, tekst + zdjęcia)', 'display' => 'block',
+		'sub_fields' => array_merge(
+			array(
+				$eyebrow( 'hsp_e' ),
+				$f( 'hsp_h', 'heading', 'Nagłówek H1', 'text' ),
+				$f( 'hsp_lead', 'lead', 'Lead', 'textarea', array( 'rows' => 3 ) ),
+			),
+			$btn( 'hsp_cta', 'cta', 'CTA' ),
+			array(
+				$f( 'hsp_img1', 'image1', 'Zdjęcie 1 (duże)', 'image', array( 'return_format' => 'array', 'preview_size' => 'medium' ) ),
+				$f( 'hsp_img2', 'image2', 'Zdjęcie 2 (małe, opcjonalne)', 'image', array( 'return_format' => 'array', 'preview_size' => 'medium' ) ),
+			)
+		),
+	);
+
 	// SUBHERO
 	$layouts['subhero'] = array(
 		'key' => 'layout_subhero', 'name' => 'subhero', 'label' => 'Subhero (nagłówek podstrony)', 'display' => 'block',
@@ -94,11 +111,12 @@ add_action( 'acf/init', function () {
 		'sub_fields' => array(
 			$eyebrow( 'tiles_e' ), $heading( 'tiles_h' ),
 			$f( 'tiles_intro', 'intro', 'Wprowadzenie', 'textarea', array( 'rows' => 2 ) ),
-			$bg( 'tiles_bg' ),
+			$bg( 'tiles_bg' ), $f( 'tiles_cols', 'cols', 'Liczba kolumn', 'select', array( 'choices' => array( 3 => '3 kolumny', 4 => '4 kolumny' ), 'default_value' => 3, 'ui' => 1 ) ),
 			$f( 'tiles_items', 'tiles', 'Kafle', 'repeater', array(
 				'layout' => 'block', 'button_label' => 'Dodaj kafel',
 				'sub_fields' => array(
 					$icon_field( 'tiles_ic' ),
+						$f( 'tiles_img', 'image', 'Zdjęcie (opcjonalne, u góry karty)', 'image', array( 'return_format' => 'array' ) ),
 					$f( 'tiles_t', 'title', 'Tytuł', 'text' ),
 					$f( 'tiles_tx', 'text', 'Opis', 'textarea', array( 'rows' => 2 ) ),
 					$f( 'tiles_url', 'url', 'URL (puste = kafel nieklikalny)', 'text' ),
@@ -203,11 +221,11 @@ add_action( 'acf/init', function () {
 	$layouts['testimonials'] = array(
 		'key' => 'layout_testimonials', 'name' => 'testimonials', 'label' => 'Opinie', 'display' => 'block',
 		'sub_fields' => array(
-			$bg( 'tst_bg' ), $eyebrow( 'tst_e' ), $heading( 'tst_h' ),
+			$bg( 'tst_bg' ), $f( 'tst_dark', 'dark', 'Ciemne tło sekcji', 'true_false', array( 'ui' => 1 ) ), $eyebrow( 'tst_e' ), $heading( 'tst_h' ),
 			$f( 'tst_items', 'items', 'Opinie', 'repeater', array(
 				'layout' => 'block', 'button_label' => 'Dodaj opinię',
 				'sub_fields' => array(
-					$f( 'tst_q', 'quote', 'Cytat', 'textarea', array( 'rows' => 3 ) ),
+					$f( 'tst_q', 'quote', 'Cytat', 'textarea', array( 'rows' => 3 ) ), $f( 'tst_rating', 'rating', 'Ocena (gwiazdki 0–5)', 'number', array( 'min' => 0, 'max' => 5, 'default_value' => 5 ) ), $f( 'tst_av', 'avatar', 'Zdjęcie autora (opcjonalne)', 'image', array( 'return_format' => 'array' ) ),
 					$f( 'tst_au', 'author', 'Autor', 'text' ),
 				),
 			) ),
@@ -307,7 +325,7 @@ add_action( 'acf/init', function () {
 			$f( 'feat_pl', 'photo_label', 'Etykieta zdjęcia (gdy brak foto)', 'text' ),
 			$f( 'feat_tt', 'tab_title', 'Plakietka — tytuł', 'text' ),
 			$f( 'feat_ts', 'tab_sub', 'Plakietka — podtytuł', 'text' ),
-			$eyebrow( 'feat_e' ), $heading( 'feat_h' ),
+			$eyebrow( 'feat_e' ), $heading( 'feat_h' ), $f( 'feat_num', 'numbered', 'Numeruj karty (01, 02…)', 'true_false', array( 'ui' => 1 ) ),
 			$f( 'feat_sub', 'sub', 'Podtytuł', 'textarea', array( 'rows' => 2 ) ),
 			$f( 'feat_cards', 'cards', 'Karty', 'repeater', array(
 				'layout' => 'block', 'button_label' => 'Dodaj kartę',

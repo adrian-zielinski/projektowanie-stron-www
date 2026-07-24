@@ -456,3 +456,51 @@ img,svg,video{max-width:100%}
 .mobile nav ul,.mobile nav .sub-menu{list-style:none;margin:0;padding:0}
 .mobile nav li{list-style:none}
 .mobile nav .sub-menu{position:static;opacity:1;visibility:visible;transform:none}
+
+/* ===================== HERO SPLIT (jasne tło, tekst + kolaż zdjęć) ===================== */
+.hero-split{background:var(--c-bg);padding-top:clamp(120px,16vh,180px);padding-bottom:clamp(48px,7vw,96px);overflow-x:clip}
+.hero-split__in{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero-split__c .eyebrow{margin-bottom:8px}
+.hero-split__c h1{font-family:var(--font-display);font-weight:600;text-transform:uppercase;letter-spacing:.02em;line-height:1.06;font-size:clamp(2rem,4.4vw,3.4rem);color:var(--c-primary);margin:6px 0 0;text-wrap:balance}
+.hero-split__lead{color:var(--c-muted);font-size:clamp(15px,1.3vw,18px);line-height:1.8;max-width:52ch;margin:20px 0 28px}
+.hero-split__media{position:relative;min-height:clamp(300px,40vw,460px)}
+.hero-split__ph{border-radius:var(--r-photo);overflow:hidden;border:1px solid var(--c-line)}
+.hero-split__ph img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-split__ph--1{height:clamp(300px,40vw,460px)}
+.hero-split__ph--2{position:absolute;bottom:-20px;left:-20px;width:46%;aspect-ratio:4/5;border:4px solid var(--c-surface);box-shadow:0 26px 52px -30px rgb(var(--c-ink-rgb) / .5)}
+@media (max-width:900px){
+  .hero-split__in{grid-template-columns:1fr;gap:28px}
+  .hero-split__ph--1{height:clamp(240px,60vw,360px)}
+  .hero-split__ph--2{width:40%;left:0;bottom:-14px}
+}
+
+/* ===================== GRID 4-kolumnowy + kafel ze zdjęciem ===================== */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,22px)}
+@media (max-width:1000px){.grid4{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.grid4{grid-template-columns:1fr}}
+.tile--photo{padding:0;overflow:hidden}
+.tile__img{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--c-bg-2)}
+.tile__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.tile--photo:hover .tile__img img{transform:scale(1.04)}
+.tile--photo .ic{margin:18px 22px 0}
+.tile--photo h3{padding:0 22px}
+.tile--photo h3:first-child{padding-top:18px}
+.tile--photo p{padding:0 22px 22px}
+
+/* ===================== OPINIE — gwiazdki, avatar, wariant ciemny ===================== */
+.testi__stars{color:var(--c-accent);letter-spacing:2px;font-size:15px;margin-bottom:10px}
+.testi__quote{font-size:15px;line-height:1.7;color:var(--c-muted)}
+.testi__by{display:flex;align-items:center;gap:12px;margin-top:16px}
+.testi__avatar{flex:none;width:44px;height:44px;border-radius:50%;overflow:hidden;border:1px solid var(--c-line)}
+.testi__avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.testi__card h3{font-family:var(--font-display);font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--c-primary);margin:0}
+.testi--dark{background:radial-gradient(circle at 16% 4%, var(--c-primary-2) 0%, transparent 55%),radial-gradient(circle at 84% 98%, var(--c-primary-4) 0%, transparent 55%),var(--c-primary-3)}
+.on-dark .card{background:rgb(var(--c-bg-rgb) / .04);border-color:rgb(var(--c-bg-rgb) / .14)}
+.on-dark .testi__quote{color:rgb(var(--c-bg-rgb) / .82)}
+.on-dark .testi__card h3{color:var(--c-bg)}
+.on-dark .testi__stars{color:var(--c-accent-2)}
+.on-dark .testi__avatar{border-color:rgb(var(--c-bg-rgb) / .2)}
+
+/* ===================== FEAT — numeracja kart ===================== */
+.card__n{display:block;font-family:var(--font-display);font-weight:800;font-size:clamp(30px,3.4vw,40px);line-height:.9;color:var(--c-accent);opacity:.55;margin-bottom:12px}
+.on-dark .card__n{color:var(--c-accent-2)}

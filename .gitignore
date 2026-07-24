@@ -23,3 +23,6 @@ Klienci/
 .claude/launch.json
 
 # UWAGA: starter-theme/dist/ commitujemy świadomie (serwer nie buduje) — patrz szablony-startowe/README.md
+
+# Podglądy weryfikacyjne (per maszyna)
+_verify/

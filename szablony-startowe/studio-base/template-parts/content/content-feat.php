@@ -14,6 +14,7 @@ $eyebrow   = sb_sub( 'eyebrow' );
 $heading   = sb_sub( 'heading' );
 $sub       = sb_sub( 'sub' );
 $cards     = sb_rows( 'cards' );
+$numbered  = (bool) sb_sub( 'numbered' );
 $i         = 0;
 ?>
 <section class="feat section">
@@ -41,7 +42,7 @@ $i         = 0;
 				<div class="cards">
 					<?php foreach ( $cards as $c ) : $i++; ?>
 						<div class="card reveal" data-d="<?php echo ( $i % 2 ) ? 1 : 2; ?>">
-							<span class="ic"><?php echo sb_icon( $c['icon'] ?? '' ); ?></span>
+							<?php if ( $numbered ) : ?><span class="card__n"><?php echo esc_html( sprintf( '%02d', $i ) ); ?></span><?php else : ?><span class="ic"><?php echo sb_icon( $c['icon'] ?? '' ); ?></span><?php endif; ?>
 							<h3><?php echo esc_html( $c['title'] ?? '' ); ?></h3>
 							<?php if ( ! empty( $c['text'] ) ) : ?><p><?php echo esc_html( $c['text'] ); ?></p><?php endif; ?>
 						</div>
