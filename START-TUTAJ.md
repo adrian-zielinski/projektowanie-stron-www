@@ -19,15 +19,46 @@ Ty **nie budujesz strony od zera.** Dajesz agentowi swój wygląd ze Stitcha, a 
 
 ---
 
-## Krok 0 — Zainstaluj Antigravity i otwórz projekt (raz, na początku)
+## Krok 0 — Trzy konta i Twoja kopia projektu (raz, na początku)
 
-1. **Pobierz Google Antigravity** — darmowy program od Google (Mac/Windows). Wpisz w Google „Antigravity download" i pobierz ze strony Google. Zainstaluj jak każdą aplikację (pobierz → otwórz → dalej/dalej). Zaloguj się kontem Google.
-2. **Otwórz w nim ten projekt** — czyli folder, w którym leży ten plik `START-TUTAJ.md`. W Antigravity: **File → Open Folder** (Otwórz folder) i wskaż ten folder.
-3. Po otwarciu zobaczysz z boku listę plików, a w oknie agenta możesz pisać po polsku.
+### 0a. Konto Google i konto GitHub
 
-> Utknąłeś? Otwórz [gemini.google.com](https://gemini.google.com) w przeglądarce i napisz: „prowadź mnie krok po kroku, jak zainstalować Google Antigravity i otworzyć w nim folder na Macu/Windowsie". Wróć tu, gdy zobaczysz pliki projektu w oknie.
+- **Konto Google** — pewnie już masz (Gmail). Będzie potrzebne do Stitcha i Antigravity.
+- **Konto GitHub** — załóż na [github.com](https://github.com) (darmowe: Sign up → e-mail → hasło → nazwa użytkownika).
 
-**Test na dowód:** napisz do agenta w Antigravity: *„przywitaj się i powiedz, co widzisz w tym folderze"*. Jak odpowie i wymieni pliki — działa, jedziemy dalej.
+**Co to GitHub?** To taki dysk Google, ale dla projektów stron. Trzymasz na nim swój projekt, a każda zmiana jest zapisywana z historią — nic nigdy nie przepada. Tu będzie mieszkał Twój warsztat i strony Twoich klientów.
+
+### 0b. Zrób WŁASNĄ kopię tego projektu
+
+Nie pracujesz na cudzym projekcie — robisz swoją kopię, jednym przyciskiem:
+
+1. Wejdź na stronę tego projektu na GitHubie (link dostałeś od prowadzącego).
+2. Kliknij zielony przycisk **„Use this template"** → **„Create a new repository"**.
+3. Nazwij swoją kopię (np. `moje-strony-www`) i **koniecznie zaznacz „Private"** — w tym projekcie będą strony Twoich klientów, nikt obcy nie ma ich widzieć.
+4. Kliknij **„Create repository"**. Gotowe — masz własny, prywatny warsztat.
+5. Na stronie swojej kopii kliknij zielony przycisk **„Code"** i **skopiuj adres** (ten z `https://github.com/...`). Przyda się za chwilę.
+
+### 0c. Zainstaluj Antigravity i pobierz swój projekt
+
+1. **Pobierz Google Antigravity** — darmowy program od Google (Mac/Windows). Wpisz w Google „Antigravity download", pobierz ze strony Google, zainstaluj (pobierz → otwórz → dalej/dalej), zaloguj się kontem Google.
+2. W Antigravity napisz do agenta:
+
+   > **„Pobierz mój projekt z GitHuba na komputer i otwórz go. Adres: [wklej skopiowany adres]. Prowadź mnie, jestem początkujący."**
+
+   Agent poprowadzi Cię przez pobranie (może poprosić o jednorazowe zalogowanie do GitHuba — to normalne, loguj się śmiało w oknie GitHuba).
+3. Po otwarciu zobaczysz z boku listę plików projektu, a do agenta piszesz po polsku.
+
+> Utknąłeś? Otwórz [gemini.google.com](https://gemini.google.com) i napisz: „prowadź mnie krok po kroku, jak zainstalować Google Antigravity i pobrać projekt z GitHuba". Wróć tu, gdy zobaczysz pliki projektu.
+
+**Test na dowód:** napisz do agenta: *„przywitaj się i powiedz, co widzisz w tym folderze"*. Jak odpowie i wymieni pliki (m.in. `START-TUTAJ.md`) — działa, jedziemy dalej.
+
+### 0d. Nawyk na zawsze: zapisuj pracę na GitHubie
+
+Po każdej większej zmianie (np. skończony etap strony klienta) napisz agentowi:
+
+> **„Zapisz wszystkie zmiany i wyślij je na mojego GitHuba."**
+
+To Twoja kopia zapasowa. Komputer może paść — projekt na GitHubie przeżyje.
 
 ---
 

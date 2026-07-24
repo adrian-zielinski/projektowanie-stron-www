@@ -26,3 +26,6 @@ Klienci/
 
 # Podglądy weryfikacyjne (per maszyna)
 _verify/
+
+# Materiały prowadzącego — tylko lokalnie, kursanci ich nie dostają
+SZKOLENIE-LIVE-SCIAGA.md
