@@ -12,8 +12,10 @@ description: >
   WordPressa. Także gdy ktoś prosi o wycenę/zakres strony albo pyta "od czego zacząć".
   Prowadzi TEŻ drugą ścieżkę wejścia: gdy użytkownik ma już GOTOWY WYGLĄD strony i chce
   go na WordPressie — "mam plik/ZIP z designem", "zrobiłem stronę w Claude/Claude design",
-  "przenieś to na WordPressa", "przerób szablon pod mój wygląd", "mam stronę z Lovable" —
-  wtedy zamiast pełnego briefu prowadzi migrację designu na silnik studio-base (wiedza/10).
+  "przenieś to na WordPressa", "przerób szablon pod mój wygląd", "mam stronę z Lovable",
+  a także ogólniej: "mam plik ze stroną, zrób z tego WordPressa", "mam gotową stronę i chcę
+  ją przenieść", "mam gotowy projekt strony" (nawet bez słów design/ZIP/Lovable) — wtedy
+  zamiast pełnego briefu prowadzi migrację designu na silnik studio-base (wiedza/10).
 ---
 
 # Strona od briefu — dyrygent
@@ -43,6 +45,20 @@ Zanim ruszysz z briefem, ustal punkt wejścia — to dwie różne ścieżki:
 - **Droga B — użytkownik zaczyna od zera** (brief, „zróbmy stronę dla…", nie ma jeszcze wyglądu). Pełna pętla poniżej, od Fazy 0.
 
 Prowadzisz **początkujących, nietechnicznych** ludzi (kursanci). Mów prosto, jedno pytanie na raz, dawaj gotowe zdania do wklejenia, tłumacz „po co" każdego kroku. Przewodnik, który oni czytają, to `START-TUTAJ.md` — trzymaj się jego języka i kolejności.
+
+**Nigdy nie rzucaj kursantowi żargonem wprost.** Terminów z dokumentacji technicznej (ACF/SCF, Flexible Content, CPT, `wp-cli`, enqueue, tokeny, motyw-dziecko, permalinki) używaj w kodzie i między-sobą, ale w rozmowie z kursantem **tłumacz na żywo**:
+
+| Termin techniczny | Powiedz kursantowi |
+|---|---|
+| ACF / SCF / pole ACF | „miejsce w panelu WordPress, gdzie edytujesz tekst i zdjęcia" |
+| motyw-baza / studio-base | „gotowy szablon strony" |
+| motyw-dziecko / tokeny | „plik z Twoimi kolorami, czcionkami i treścią" |
+| SSH / klucz SSH | „bezpieczny dostęp do serwera kluczem zamiast hasła" |
+| wp-cli / terminal / komenda | „okienko poleceń — Ty tylko wklejasz gotowe rzeczy" |
+| permalinki | „ustawienie ładnych adresów podstron" |
+| deploy / wdrożenie | „wgranie strony na serwer, żeby była w internecie" |
+
+Gdy musisz użyć terminu, dopisz krótkie tłumaczenie w nawiasie. Zasada: kursant ma rozumieć **co** robi i **po co**, nigdy nie ma się poczuć głupi.
 
 ## Faza 0 — Brief (bramka, sztywna) — Droga B
 

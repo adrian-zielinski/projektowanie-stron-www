@@ -71,8 +71,12 @@ Wszystkie przewodniki SOP są w folderze `wiedza/`:
 - `04-sprzedaz-kursow-lms.md` — sprzedaż kursów i platformy LMS.
 - `05-seo-on-page.md` — SEO on-page dla custom theme.
 - `06-stack-technologiczny.md` — stack: custom theme, ACF, Tailwind, animacje, hosting.
+- `07-jak-anthropic-buduje-skille.md` — jak rozwijać ten system.
+- `08-praktyka-wp-narzedzia-workflow.md` — lekcje z praktyki: motyw baza+dziecko, Playground, workflow.
+- `09-wdrozenie-produkcja-lh-ssh.md` — wdrożenie przez SSH na LH.pl.
+- `10-migracja-z-generatora-na-wordpress.md` — przeniesienie strony z Claude design / Lovable na WP.
 
-Nie musisz czytać ich na pamięć — Claude sięga do nich sam w trakcie pracy. Zajrzyj, gdy chcesz zrozumieć „dlaczego" za jakąś decyzją.
+> ⚠️ **Te dokumenty są pisane dla Claude, nie dla Ciebie.** Są gęste i techniczne — Claude sięga do nich sam w trakcie pracy. **Nie musisz ich czytać.** Zajrzyj tylko, gdy z ciekawości chcesz zrozumieć „dlaczego" za jakąś decyzją. Jako początkujący trzymaj się [`START-TUTAJ.md`](START-TUTAJ.md).
 
 ---
 

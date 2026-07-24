@@ -45,7 +45,27 @@ Migracja to **nie** przepisanie 1:1 pikseli. To: *zachowujemy to, co działa wiz
 Wyciągnij tokeny z kodu, nie zgaduj:
 
 - **Paleta** — z Claude design: zmienne CSS w `:root` / klasy Tailwind w markupie. Z Lovable: `tailwind.config` / zmienne CSS.
-- **Typografia** — `@font-face`/`<link>`/`font-family`. Sprawdź **wsparcie `latin-ext`** (polskie znaki ą/ę/ś!) — część fontów go nie ma. Fonty pobierz **lokalnie** (RODO — brak strzału do Google przy każdej wizycie).
+- **Typografia** — `@font-face`/`<link>`/`font-family`. Sprawdź **wsparcie `latin-ext`** (polskie znaki ą/ę/ś!) — część fontów go nie ma. Fonty pobierz **lokalnie** (RODO — brak strzału do Google przy każdej wizycie). Konkretny przepis niżej.
+
+### Self-hosting fontów (RODO) — przepis, nie tylko nakaz
+
+„Fonty lokalnie" bez procedury jest bezużyteczne. Jak to zrobić w motywie-dziecku:
+
+1. **Pobierz pliki `woff2`** dla każdej wagi — google-webfonts-helper (`gwfh.mranftl.com`): wybierz font, zaznacz zakres **`latin` + `latin-ext`**, format woff2, pobierz.
+2. **Wrzuć** do dziecka: `assets/fonts/<font>/*.woff2`.
+3. **`@font-face`** w `tokens.css` (lub osobnym `fonts.css`), po bloku na wagę — `font-display:swap` obowiązkowo:
+   ```css
+   @font-face{ font-family:"Nazwa"; font-style:normal; font-weight:400; font-display:swap;
+     src:url("../fonts/nazwa/nazwa-400.woff2") format("woff2"); }
+   ```
+4. **Preload** kluczowej wagi w `<head>` (przez `functions.php` dziecka):
+   ```php
+   add_action('wp_head', function(){ echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="'.get_stylesheet_directory_uri().'/assets/fonts/nazwa/nazwa-400.woff2">'; }, 1);
+   ```
+5. Ustaw `--font-body`/`--font-display` na `"Nazwa", system-ui, sans-serif`. **Usuń `<link>` do Google Fonts** z designu źródłowego — inaczej RODO-strzał zostaje.
+6. Sprawdź ą/ę/ś/ł/ź/ż na żywo — krzaki = brak `latin-ext` w pobranym pliku.
+
+> Dla szybkiego podglądu/dema (nie produkcja) Google Fonts przez `<link>` jest OK — ale **przed live** fonty muszą być lokalne. Zaznacz to klientowi jako punkt do domknięcia.
 - **Element-sygnatura** — odtwórz w kodzie (jeśli był rysowany JS-em/SVG, nie zrzucaj jako obrazek).
 
 Tokeny lądują w **motywie-dziecku** jako `tokens.css` — nadpisują neutralne `:root` bazy `studio-base`:
@@ -99,6 +119,8 @@ Przy wielu podstronach rozbij konwersję na **równoległych agentów** — jede
 
 1. **Lokalnie / Playground** — sekcje renderują treść, kaskada baza→dziecko trzyma paletę i fonty, zero błędów PHP. WordPress Playground (`npx @wp-playground/cli server`) wystarcza, bo render idzie przez `get_field()`.
 2. **Porównanie ze źródłem** — podgląd obok oryginału: te same sekcje, ta sama treść, podniesiona grafika. Serwuj statycznie i poproś klienta o zrzut — **nie przejmuj mu ekranu**.
+
+   **Plan B, gdy przeglądarka in-app zawiedzie** (nawigacja/preview timeoutuje — zdarza się): nie blokuj się na renderze. Kolejno: (a) zbuduj statyczny harness HTML (podłącz `main.css` bazy + `tokens.css` dziecka, wpisz treść wprost w markup zgodny z klasami) i otwórz przez `file://` z folderu **projektu** — nie `localhost` (bywa blokowany polityką); (b) jeśli i to timeoutuje — **poproś klienta o zrzut** tego pliku HTML u siebie; (c) weryfikacja zastępcza z inspekcji kodu: potwierdź, że `main.css` używa wyłącznie `var(--c-*)`/`rgb(var(--c-*-rgb)/…)` (zero zaszytych kolorów) → tokeny dziecka zadziałają. Zaznacz w raporcie, że render potwierdzono kodem, nie zrzutem.
 3. **Wdrożenie na produkcję** — pełna procedura SSH + wp-cli w `09-wdrozenie-produkcja-lh-ssh.md`.
 
 ---
