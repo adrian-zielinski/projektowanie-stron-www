@@ -1,8 +1,23 @@
 # Szablony startowe
 
-Gotowe assety startowe dla projektu „Projektowanie stron WWW". Na razie zawiera jeden element:
+Gotowe assety startowe dla projektu „Projektowanie stron WWW". Dwa motywy do wyboru:
 
-- **`starter-theme/`** — minimalny, działający **custom classic theme** WordPress. Stack: PHP + Tailwind v4 (Vite) + ACF + GSAP/Lenis. Bez Elementora i page-builderów — cały wygląd i animacje w kodzie.
+- **`studio-base/`** — **domyślny silnik (zalecany).** Brandless motyw-baza: biblioteka 17 typów sekcji (ACF/SCF Flexible Content), render przez `get_field()`, moduł SEO w kodzie, bespoke CSS w pełni sterowany tokenami. Pracujesz w modelu **baza + motyw-dziecko per klient**: bazy nie ruszasz, dziecko dostarcza tylko paletę i fonty (`tokens.css`) oraz treść przez panel. Do tego celujesz, gdy budujesz stronę od briefu albo zasilasz ją z pliku Claude design.
+- **`starter-theme/`** — minimalny punkt startu „od zera". Jedna sekcja hero, stack PHP + Tailwind v4 (Vite) + ACF + GSAP/Lenis. Bierz go, gdy chcesz ręcznie złożyć prosty motyw na Tailwindzie bez biblioteki sekcji.
+
+Oba są custom classic theme — bez Elementora i page-builderów, cały wygląd i animacje w kodzie.
+
+---
+
+## studio-base — silnik baza + dziecko (zalecany)
+
+**Zasada:** motywu nie budujesz od zera per klient. Instalujesz `studio-base` (silnik) raz, a per klient tworzysz **motyw-dziecko** = tylko marka.
+
+1. **Baza** — wgraj `studio-base/` do `wp-content/themes/`. `:root` w `assets/css/main.css` ma neutralne tokeny (`--c-primary/--c-bg/--c-accent…` + kanały `--c-*-rgb`) i neutralne fonty. Żaden komponent nie ma zaszytego koloru — wszystko czyta z tokenów.
+2. **Dziecko** — nowy motyw z nagłówkiem `Template: studio-base`, w nim `assets/css/tokens.css` nadpisujący tokeny paletą i fontami marki (enqueue z zależnością od handle bazy, żeby `:root` dziecka wygrał). Treść i zdjęcia klient wpisuje w panelu (SCF/ACF), nie w plikach motywu.
+3. **Pola i treść** — Flexible Content „sekcje" renderuje się przez `get_field()` (działa na darmowym SCF i na ACF Pro). Pola „obraz" podpinaj po attachment ID, nie po URL.
+
+Efekt: nowy klient = `tokens.css` (paleta/fonty) + treść w panelu → prawie zero pracy nad layoutem. Nowe sekcje dopisujesz tylko, gdy czegoś brak w bibliotece. Szerzej: `../wiedza/08-praktyka-wp-narzedzia-workflow.md` i `../wiedza/06-stack-technologiczny.md`. Migracja istniejącej strony (Lovable / Claude design / inny generator) → `../wiedza/10-migracja-z-generatora-na-wordpress.md`.
 
 ---
 

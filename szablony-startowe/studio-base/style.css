@@ -1,0 +1,13 @@
+/*
+Theme Name: Studio Base
+Theme URI: https://example.com/studio-base
+Description: Brandless motyw-baza (silnik + biblioteka sekcji ACF). Wygląd marki dostarcza motyw-dziecko (tokeny + treść). Zero page-buildera — custom classic theme.
+Version: 0.1.0
+Requires at least: 6.4
+Requires PHP: 8.1
+Text Domain: studio-base
+Tags: custom-theme, acf, classic
+*/
+
+/* Produkcyjny CSS ładowany jest z assets/css/main.css przez inc/enqueue.php.
+   Ten plik to tylko nagłówek-metadane motywu. */

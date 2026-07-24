@@ -1,5 +1,7 @@
 # Projektowanie stron WWW — system dla web-designera
 
+> 👉 **Początkujący? Zacznij od [`START-TUTAJ.md`](START-TUTAJ.md)** — prosty przewodnik krok po kroku, bez żargonu. Ten README jest bardziej szczegółowy.
+
 System do Claude Code, który prowadzi Cię od briefu klienta do wdrożonej strony na WordPressie. Strona powstaje jako **własny motyw (custom classic theme)** — czysty kod PHP/HTML/CSS/JS, bez Elementora i innych page-builderów. Masz pełną kontrolę nad wyglądem, animacjami i wydajnością.
 
 ## Co to jest i co daje
@@ -35,7 +37,7 @@ Brief  →  Design do akceptacji  →  Custom theme WordPress  →  SEO  →  Wd
 2. **Design do akceptacji** — najpierw struktura i hierarchia treści, potem kierunek wizualny (paleta, typografia, układ, makieta). **Akceptujesz, zanim powstanie kod** — żadnego marnowania czasu na coś, co nie pasuje.
 3. **Custom theme WordPress** — Claude koduje motyw: szablony, sekcje, pola edytowalne dla klienta, animacje. Wszystko w kodzie, zero buildera.
 4. **SEO** — meta, nagłówki, struktura URL, mapa strony, schema, optymalizacja pod Core Web Vitals.
-5. **Wdrożenie** — przeniesienie na hosting, podmiana adresów, testy, włączenie indeksacji. Z checklistą bezpieczeństwa i backupu.
+5. **Wdrożenie** — przeniesienie na hosting, podmiana adresów, testy, włączenie indeksacji. Z checklistą bezpieczeństwa i backupu. Na **LH.pl** idzie to prosto i szybko: włączasz SSH w panelu i wpuszczasz Claude **jednym wklejeniem komendy z kluczem** — całą stronę wgrywa za Ciebie, bez ręcznego dłubania w terminalu. Instrukcja krok po kroku (co kliknąć w panel.lh.pl, jakie dane podać): **`wiedza/09-wdrozenie-produkcja-lh-ssh.md`**. Zasada bezpieczeństwa: **nigdy nie podajesz hasła** — tylko host, port i login; resztę załatwia klucz.
 
 Każdy etap kończy się efektem do akceptacji i checklistą jakości — nie przeskakujesz dalej, dopóki bramka nie jest zaliczona.
 

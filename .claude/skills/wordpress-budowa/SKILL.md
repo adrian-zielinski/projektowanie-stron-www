@@ -113,6 +113,18 @@ Skrót: `npm run build` → wgraj motyw z `dist/` na `wp-content/themes/<slug>/`
 
 Pełna procedura (FTP/SFTP, SSH+rsync, git clone/pull, krok-po-kroku stage na subdomenie LH, podmiana URL w bazie, noindex+hasło, Redis/PHP w DirectAdmin) → **`references/deploy-lh.md`**. Czytaj ten plik, gdy zadanie dotyczy wdrożenia, migracji lub konfiguracji serwera.
 
+### Wdrożenie na LH przez SSH — sprawdzona ścieżka (klient + wp-cli)
+
+Domyślny, szybki sposób na LH.pl: **klucz SSH + wp-cli** (zero rsynca, zero ręcznego buildu na serwerze). Pełen przepis z pułapkami → **`wiedza/09-wdrozenie-produkcja-lh-ssh.md`**. W skrócie:
+
+- **Dostęp = klucz, nie hasło.** Asystent NIGDY nie wpisuje hasła klienta. Wygeneruj klucz (`ssh-keygen -t ed25519 -f ~/.ssh/<klient>_lh_deploy`), daj klientowi spersonalizowaną instrukcję: (1) panel.lh.pl → Serwery → Ustawienia → **dostęp SSH → Włącz** (host `serwerXXXXXX.lh.pl`, port `40022`, login `serwerXXXXXX`); (2) jedna komenda dopisująca Twój `.pub` do `~/.ssh/authorized_keys` (wkleja po jednym logowaniu hasłem). Nie kieruj po klucze do DirectAdmin — `:2222` bywa zablokowany z zewnątrz.
+- **Znajdź WP:** `find ~ -name wp-config.php` → na LH `public_html/autoinstalator/<domena>/wordpressNNNNNN` (NIE `~/domains`).
+- **Najpierw sprawdź bazę:** `wp option get home`. „Error establishing a database connection" → autoinstalator ma rozjechane hasło bazy (to też powód 500). Reset w **panelu LH → Serwery → Bazy danych MySQL → Edytuj → Dane dostępowe**, potem `wp config set DB_PASSWORD '…'`. (phpMyAdmin tego nie zmieni — brak CREATE USER.)
+- **Wgranie (kolejność!):** `wp theme install studio-base.zip` → `wp theme install holiestetyka.zip --activate` → `wp plugin install advanced-custom-fields --activate` → `wp plugin install holi-importer.zip --activate` → `wp rewrite flush`. Reimport treści: `wp option delete holi_seeded_v1 && wp eval '1;'`.
+- **Media:** `scp` do `wp-content/uploads/holi/`, URL bezpośredni; filmy kompresuj (ffmpeg H.264, `-an`, faststart, crf 28). Gdy brew-owy ffmpeg zepsuty (`libx265.NNN`) → `brew reinstall ffmpeg`.
+- **Weryfikuj z zewnątrz:** `curl -sIL https://DOMENA/` + grep `wp-child-theme-…` + H1 podstron.
+- **Uwaga:** phpMyAdmin pokazuje SWÓJ PHP (np. 7.4), nie PHP strony. Produkcja po wyraźnym „tak"; klucz działa niezależnie od hasła (klient może je potem zmienić).
+
 ## Weryfikacja przed zamknięciem zadania
 
 Nie deklaruj „gotowe" bez dowodu. Odhacz:
@@ -134,3 +146,10 @@ Nie deklaruj „gotowe" bez dowodu. Odhacz:
 
 - `wiedza/06-stack-technologiczny.md` — pełny SOP z gotowymi snippetami (PHP, vite.config, enqueue, GSAP). Czytaj, gdy potrzebujesz dokładnego kodu do wklejenia.
 - `references/deploy-lh.md` — deploy na LH/Mango i stage na subdomenie. Czytaj przy wdrożeniu, migracji URL lub konfiguracji serwera.
+- `wiedza/08-praktyka-wp-narzedzia-workflow.md` — reużywalny motyw baza+dziecko, WordPress Playground (lokalny WP bez Dockera), QA i narzędzia.
+
+## Reużywalność + lokalny WP (z praktyki → `wiedza/08`)
+
+- **NIE buduj motywu od zera per klient.** Buduj **motyw-bazę** brandless (silnik + biblioteka sekcji ACF Flexible Content + CSS ze zmiennymi semantycznymi `--c-primary/--c-bg/--c-accent` i `--font-body/--font-display/--font-accent` w NEUTRALNYCH defaultach + JS toolkit; `szablony-startowe/studio-base/`) oraz **motyw-dziecko per klient** (`style.css` z `Template: <baza>`, `assets/css/tokens.css` z paletą/fontami marki — enqueue z zależnością od handle bazy, by `:root` nadpisał neutralne; treść i zdjęcia w ACF). W bazie zero marki.
+- **Bespoke CSS dozwolone:** gdy design jest hand-coded (komponenty `.hero/.radial`…), nie refaktoruj na Tailwind — enqueue własny CSS z `filemtime()` jako wersją; Vite tylko do minifikacji/fontów lokalnych (RODO).
+- **Lokalny WP bez Dockera/LocalWP — WordPress Playground:** `npx @wp-playground/cli server --mount "<theme>:/wordpress/wp-content/themes/<slug>" --blueprint blueprint.json --port 9400` (blueprint: `installPlugin` ACF + `activateTheme`). Uruchamiaj przez **Bash `run_in_background`** — panel/`preview_start` nie odpali npx (`EPERM uv_cwd`). Weryfikuj `curl http://127.0.0.1:9400/` (serwer z basha jest osiągalny) — sprawdź, że ładuje się `main.css` bazy + `tokens.css` dziecka i brak `Fatal/Parse error`. Ostrzeżenia `fcntl EBADF` w logu = nieszkodliwy quirk php-wasm.

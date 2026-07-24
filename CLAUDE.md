@@ -10,9 +10,12 @@ Zawsze pokaż projekt (sekcje + system wizualny) i uzyskaj akceptację, zanim za
 
 ## Jak zacząć (dla użytkownika)
 
-1. Wypełnij brief: skopiuj `briefy/SZABLON-BRIEFU.md` i zapisz jako `briefy/<klient>.md`.
-2. Powiedz: „zaprojektuj stronę wg briefu `briefy/<klient>.md`".
-3. Reszta dzieje się fazami. Akceptujesz design, potem powstaje motyw i wdrożenie.
+Użytkownicy to często **początkujący, nietechniczni** ludzie (kursanci). Prosty przewodnik dla nich to **`START-TUTAJ.md`** — trzymaj się jego języka i kolejności, gdy ktoś jest zagubiony. Są dwie drogi wejścia:
+
+- **Droga A — gotowy wygląd (ZIP / „Claude design" / Lovable):** użytkownik ma już design i chce go na WordPressie. Prowadź migrację na silnik `studio-base` wg `wiedza/10` (nie odpytuj z pełnego briefu; strukturę bierzesz z designu). Dyrygent `strona-od-briefu` rozpoznaje to wejście.
+- **Droga B — od zera:** brief (`briefy/SZABLON-BRIEFU.md` → `briefy/<klient>.md`) albo krótki wywiad, potem „zaprojektuj stronę wg briefu…". Reszta dzieje się fazami: akceptujesz design, potem powstaje motyw i wdrożenie.
+
+W obu drogach: motywu nie budujemy od zera — dostrajamy gotowy `studio-base` przez tokeny motywu-dziecka.
 
 ## Twarde reguły
 
@@ -21,17 +24,23 @@ Zawsze pokaż projekt (sekcje + system wizualny) i uzyskaj akceptację, zanim za
 - **Copy przez `stop-slop`.** Każdy tekst na stronie i w komunikacji bez frazesów AI.
 - **SEO wbudowane od startu**, nie doklejane na końcu: jedno H1 na stronę, semantyczny HTML, meta, schema JSON-LD.
 - **Mobile-first, dostępność (WCAG AA), Core Web Vitals.** Animacje za bramką `prefers-reduced-motion`.
-- **Weryfikuj, nie deklaruj.** Build motywu, screenshot porównany z projektem, Lighthouse, smoke-test formularzy. Pokaż dowód.
+- **Weryfikuj, nie deklaruj.** Build motywu, screenshot porównany z projektem, Lighthouse, smoke-test formularzy. Pokaż dowód. Podgląd statyczny: walidacja strukturalna w Bash (jeden H1, martwe linki, emoji), audyt overflow przez `preview_eval`, cache-busting `?v=N`. Motyw WP: weryfikuj lokalnie na WordPress Playground (`wiedza/08`).
+- **Reużywalny motyw baza+dziecko.** Marka (paleta/fonty/zdjęcia/treść) żyje TYLKO w motywie-dziecku; baza zostaje neutralna i wielokrotnego użytku → minimalizacja tokenów u kolejnego klienta. Szczegóły: `wiedza/08`.
+- **Materiały klienta przerób w całości najpierw.** Czat + WSZYSTKIE głosówki (`.opus` → `afconvert` + `whisper-cli`, bo `ffmpeg` bywa zepsuty) + zdjęcia (klasyfikacja z flagą wrażliwości) — tam są realne ustalenia i akceptacje. Przepis: `wiedza/08`.
+- **Wdrożenie = SSH kluczem, nie hasłem.** NIGDY nie wpisuj hasła klienta (SSH/FTP/baza/panel) — dostęp wyłącznie przez klucz SSH; klient nie wkleja hasła do czatu, podaje tylko host/port/login. Daj klientowi spersonalizowaną instrukcję „włącz SSH (panel.lh.pl → Serwery → Ustawienia → dostęp SSH) + wklej jedną komendę z kluczem", potem wgrywaj wp-cli wg sprawdzonej sekwencji. Produkcja po wyraźnym „tak". Cała procedura + pułapki: `wiedza/09`.
 
 ## Stack
 
-WordPress (custom classic theme) · ACF (pola + Flexible Content zamiast buildera) · Tailwind CSS + Vite · animacje: GSAP + ScrollTrigger + Lenis + Lottie · cache: LiteSpeed · hosting domyślny: LH.pl (plan Mango: NVMe, SSH, LiteSpeed), działa też gdzie indziej. Local dev: LocalWP albo wp-env.
+WordPress (custom classic theme) · pola + Flexible Content zamiast buildera: **Secure Custom Fields (SCF) — DARMOWY** (oficjalny fork WordPress.org z funkcjami dawnego ACF Pro: Flexible Content, Repeater, strony opcji; API zgodne `acf_*`/`get_field`) lub ACF Pro; darmowe „Advanced Custom Fields" NIE wystarcza (brak flexible/repeater). **Pola „obraz" podpinaj po attachment ID** (SCF/Pro je przetwarza), nie po URL. · Tailwind CSS + Vite **lub** bespoke CSS (gdy design jest hand-coded, Tailwind to zbędny refaktor) · animacje: GSAP + ScrollTrigger + Lenis + Lottie (gotowy toolkit „motion" → `wiedza/08`) · cache: LiteSpeed · hosting domyślny: LH.pl (plan Mango: NVMe, SSH, LiteSpeed), działa też gdzie indziej. Local dev: LocalWP albo wp-env, a gdy ich brak — **WordPress Playground** (`npx @wp-playground/cli server`, lokalny WP bez Dockera; przepis w `wiedza/08`).
+
+**Reużywalność — model domyślny (NIE buduj motywu od zera per klient):** **motyw-baza** brandless (silnik + biblioteka sekcji ACF Flexible Content + CSS ze zmiennymi semantycznymi `--c-*`/`--font-*` w neutralnych defaultach + JS toolkit) → `szablony-startowe/studio-base/`; **motyw-dziecko per klient** = tylko tokeny marki (`tokens.css`) + treść przez ACF. Pełny opis: `wiedza/08`.
 
 ## Kiedy co wołać
 
 | Sytuacja | Skill |
 |---|---|
 | Nowa strona / landing / sklep / portfolio; wrzucony brief | **`strona-od-briefu`** (dyrygent prowadzi cały proces) |
+| Przeniesienie istniejącej strony (Claude design / Lovable / inny generator) na WP | **`wordpress-budowa`** + wiedza `10-migracja-z-generatora-na-wordpress.md` |
 | Wygląd, makieta, paleta, typografia, animacje | **`web-design-anti-slop`** |
 | Nagłówki H1–H6, meta, schema, widoczność w Google | **`seo-techniczne-onpage`** |
 | Budowa motywu, ACF, Tailwind/Vite, deploy na WordPress | **`wordpress-budowa`** |
@@ -52,6 +61,9 @@ Szczegóły każdego tematu w `wiedza/`:
 - `05-seo-on-page.md` — SEO on-page i techniczne
 - `06-stack-technologiczny.md` — custom theme, Tailwind/Vite, animacje, deploy
 - `07-jak-anthropic-buduje-skille.md` — jak rozwijać ten system
+- `08-praktyka-wp-narzedzia-workflow.md` — **lekcje z praktyki**: reużywalny motyw baza+dziecko, WordPress Playground (lokalny WP bez Dockera), transkrypcja głosówek klienta, wielo-agentowe workflow, toolkit animacji, QA podglądu (overflow/cache-busting), galerie efektów + wrażliwość
+- `09-wdrozenie-produkcja-lh-ssh.md` — **wdrożenie na LH przez SSH krok po kroku**: instrukcja DLA KLIENTA (włącz SSH w panel.lh.pl + wpuść asystenta kluczem), sprawdzona sekwencja wp-cli (motyw→ACF→importer→permalinki→media), weryfikacja z zewnątrz, pułapki (rozjechane hasło bazy = 500, DirectAdmin :2222 zablokowany, PHP z phpMyAdmin ≠ PHP strony, ffmpeg/libx265, ścieżka WP w autoinstalatorze)
+- `10-migracja-z-generatora-na-wordpress.md` — **przeniesienie gotowej strony** z Claude design / Lovable / v0 / Bolt na silnik `studio-base` (baza+dziecko): ekstrakcja tokenów → mapowanie sekcji → treść do SCF/ACF → przekierowania 301 → deploy
 
 ## Struktura
 

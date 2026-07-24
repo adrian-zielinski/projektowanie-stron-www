@@ -110,3 +110,11 @@ Przejdź, zanim oddasz design do implementacji:
 - `references/design-md-template.md` — szablon `DESIGN.md` (tokeny + reguły zakazane) do oddania implementacji.
 - `references/anatomia-sekcji.md` — wzorce sekcji, frameworki copy, bramka konwersji.
 - `references/anti-slop-checklista.md` — pełna lista czerwonych flag i kontrprzykłady.
+- `wiedza/08-praktyka-wp-narzedzia-workflow.md` — toolkit animacji „motion", QA podglądu (overflow, cache-busting), galerie efektów + wrażliwość.
+
+## Animacje + QA z praktyki (→ `wiedza/08`)
+
+- **Gotowy toolkit „motion"** (reużywalne klasy CSS): `.flow-line`/`.accent-line` (płynący divider — „żyła"), `.rf-rings` (fale), `.scan` (omiatający promień), `.dots` (pulsujący sygnał), `.pulse-soft`/`.beat`/`.drift`, puls emblematu. Każda za bramką `prefers-reduced-motion`. Animuj `transform`/`opacity` (GPU) + `stroke-dashoffset` na przepływ linii. **Per podstrona daj INNY motyw** — to buduje unikalność („podobne, ale nie 1:1").
+- **Radial „hub & spokes" rysuj JS-em wg realnych pozycji węzłów** (`getBoundingClientRect`), nie sztywnymi ścieżkami SVG — te się rozjeżdżają przy responsywności; przerysowuj na `resize` + `fonts.ready`; na mobile chowaj linie i składaj w listę.
+- **QA podglądu**: walidacja strukturalna w Bash (jeden `<h1>`, martwe linki, emoji), audyt overflow przez `preview_eval` (`scrollWidth - clientWidth`, lista elementów szerszych niż viewport) + `body/html{overflow-x:hidden}` i `.section{overflow-x:clip}`, **cache-busting `?v=N`** na CSS/JS (bumpuj po każdej zmianie — inaczej klient „nie widzi zmian").
+- **Galerie efektów przed/po** (klinika/medycyna): dyskretne, z notą „za zgodą pacjentów"; materiał mocno medyczny/intymny — decyzja o publikacji należy do klienta (i blokuje Google/Meta Ads).

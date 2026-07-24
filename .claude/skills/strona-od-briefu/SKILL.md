@@ -10,6 +10,10 @@ description: >
   klienta lub mówi "zróbmy stronę dla...", "potrzebuję strony/landinga/sklepu", "wdróżmy
   witrynę", "mam klienta na stronę" — nawet jeśli nie nazwie tego procesem ani nie wymieni
   WordPressa. Także gdy ktoś prosi o wycenę/zakres strony albo pyta "od czego zacząć".
+  Prowadzi TEŻ drugą ścieżkę wejścia: gdy użytkownik ma już GOTOWY WYGLĄD strony i chce
+  go na WordPressie — "mam plik/ZIP z designem", "zrobiłem stronę w Claude/Claude design",
+  "przenieś to na WordPressa", "przerób szablon pod mój wygląd", "mam stronę z Lovable" —
+  wtedy zamiast pełnego briefu prowadzi migrację designu na silnik studio-base (wiedza/10).
 ---
 
 # Strona od briefu — dyrygent
@@ -31,7 +35,16 @@ Jesteś orkiestratorem, nie wykonawcą każdego detalu. Prowadzisz przez fazy, p
 
 Każda faza kończy się **artefaktem** (dokument lub działający kod) i **bramką** z `references/checklisty.md`. Nie przechodź dalej, dopóki bramka nie jest odhaczona. Gdy brief się zmienia w trakcie — wróć do dotkniętej fazy, nie łataj w locie.
 
-## Faza 0 — Brief (bramka, sztywna)
+## Najpierw rozpoznaj, którą drogą idzie użytkownik
+
+Zanim ruszysz z briefem, ustal punkt wejścia — to dwie różne ścieżki:
+
+- **Droga A — użytkownik ma już gotowy wygląd** (plik/ZIP z designem, strona zrobiona w „Claude design", Lovable, v0, Bolt; mówi „przenieś to na WordPressa", „przerób szablon pod mój wygląd"). **Nie odpytuj z pełnego briefu.** Idź w **migrację designu na silnik `studio-base`** wg **`wiedza/10-migracja-z-generatora-na-wordpress.md`**: znajdź plik, wyciągnij tokeny (paleta/fonty), zmapuj sekcje, przełóż treść do ACF/SCF. Pomijasz Fazę 1 (architektura od zera) — strukturę bierzesz z gotowego designu. **Zachowujesz Fazę 2 jako bramkę akceptacji** (pokaż, jak wygląd przełożony na studio-base wygląda, uzyskaj „ok"), oraz Fazy 4–5 (SEO, QA, wdrożenie). Z briefu potrzebujesz tylko minimum: cel strony, hosting/domena, kto dostarcza realne zdjęcia/treści, język, wymogi prawne.
+- **Droga B — użytkownik zaczyna od zera** (brief, „zróbmy stronę dla…", nie ma jeszcze wyglądu). Pełna pętla poniżej, od Fazy 0.
+
+Prowadzisz **początkujących, nietechnicznych** ludzi (kursanci). Mów prosto, jedno pytanie na raz, dawaj gotowe zdania do wklejenia, tłumacz „po co" każdego kroku. Przewodnik, który oni czytają, to `START-TUTAJ.md` — trzymaj się jego języka i kolejności.
+
+## Faza 0 — Brief (bramka, sztywna) — Droga B
 
 Brief jest jedynym wejściem. **Nie zaczynaj projektować ani kodować, dopóki brief nie jest kompletny.** Gdy informacji brakuje, przeprowadź krótki wywiad — pytaj partiami, nie wszystko naraz. Minimalny komplet:
 
@@ -129,3 +142,11 @@ Specjalistów uruchamiaj przez Skill tool. Nie projektuj designu „z głowy" �
 - `references/faza-4-seo.md` — meta, schema, hierarchia, CWV
 - `references/faza-5-qa-wdrozenie.md` — QA i sztywne wdrożenie
 - `references/checklisty.md` — bramki jakości po każdej fazie
+- `wiedza/08-praktyka-wp-narzedzia-workflow.md` — przetwarzanie materiałów klienta, wielo-agentowe workflow, reużywalny motyw, narzędzia
+
+## Z praktyki — materiały klienta, workflow, podgląd (→ `wiedza/08`)
+
+- **Materiały klienta przerób w CAŁOŚCI w Fazie 0**, zanim cokolwiek zaprojektujesz: cały czat (`_chat.txt`), WSZYSTKIE głosówki (`.opus` → transkrypcja `afconvert` + `whisper-cli`, bo systemowy `ffmpeg` bywa zepsuty), zdjęcia (klasyfikacja przez agentów z flagą wrażliwości), wideo, PDF, linki-inspiracje (`WebFetch`). Tam są realne akceptacje, zmiany i „co się nie podobało" — często nowsze niż brief.
+- **Podgląd designu jako żywy HTML, potem motyw WP.** Faza 2 = klikalny statyczny podgląd (wspólny `styl.css` + komponenty), akceptacja, dopiero Faza 3 = przeniesienie do custom theme (baza+dziecko, ACF). Migracja z Lovable/innej apki: to NIE eksport — odtwarzasz design jako szablony.
+- **Wielo-agentowe workflow** (świadomie, ostrożnie z tokenami): audyt pokrycia treści (1 agent/podstrona: dokument vs zbudowana strona), klasyfikacja zdjęć, domknięcie treści per podstrona, rozkład animacji. Zasada: najpierw zbuduj wzorzec + wspólny system stylów, potem fan-out — agenci kopiują wzorzec i wklejają treść.
+- **Weryfikuj, nie deklaruj**: walidacja strukturalna w Bash, audyt overflow przez `preview_eval`, motyw WP na WordPress Playground. Nie przejmuj ekranu klienta (Arc/computer-use) — pracuje równolegle; podgląd przez serwer + cache-busting `?v=N`.

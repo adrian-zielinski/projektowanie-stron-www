@@ -14,4 +14,12 @@ Thumbs.db
 # iCloud
 *.icloud
 
+# Materiały klientów — NIE commitujemy do repo systemu/kursu.
+# Wrażliwe dane osób trzecich (zdjęcia medyczne, głosówki), sekrety w czatach, ciężkie media.
+# Trzymaj je w osobnym, prywatnym repo per klient.
+Klienci/
+
+# Lokalna konfiguracja podglądu (per maszyna)
+.claude/launch.json
+
 # UWAGA: starter-theme/dist/ commitujemy świadomie (serwer nie buduje) — patrz szablony-startowe/README.md
