@@ -1,155 +1,153 @@
 # 🟢 START TUTAJ — przewodnik krok po kroku
 
-Ten przewodnik przeprowadzi Cię od pomysłu do gotowej strony na WordPressie. Jest napisany dla osoby **nietechnicznej** — nie musisz umieć programować. Całą trudną robotę wykonuje Claude. Ty klikasz, kopiujesz gotowe zdania i akceptujesz efekty.
+Ten przewodnik przeprowadzi Cię od pomysłu do gotowej strony na WordPressie. Jest napisany dla osoby **nietechnicznej** — nie musisz umieć programować. Używamy **dwóch darmowych narzędzi od Google**:
 
-Zasada, która obowiązuje zawsze: **jak czegoś nie wiesz — po prostu zapytaj Claude w oknie czatu.** Napisz „nie rozumiem tego kroku, wytłumacz prościej". Claude odpowie i poczeka na Ciebie.
+- **Google Stitch** — projektuje wygląd strony (mówisz mu, co chcesz — on rysuje).
+- **Google Antigravity** — wykonuje robotę (bierze Twój wygląd i buduje z niego prawdziwą stronę WordPress, a potem wgrywa ją do internetu).
+
+Zapamiętaj tę parę tak: **Stitch to projektant, Antigravity to wykonawca.** Ty jesteś szefem — mówisz, czego chcesz, i akceptujesz efekty.
+
+Zasada na całą drogę: **jak czegoś nie wiesz — zapytaj agenta w Antigravity.** Napisz „nie rozumiem tego kroku, wytłumacz prościej". Odpowie i poczeka na Ciebie. Nie ma głupich pytań.
 
 ---
 
 ## Najpierw zrozum, jak to działa (2 minuty czytania)
 
-Wewnątrz tego projektu jest **gotowy szablon strony** (nazywa się `studio-base`). To silnik: ma już zaprogramowane wszystkie klocki strony — nagłówek, sekcje, galerię, stopkę, przyciski. Jest celowo „bezbarwny", żeby dało się go ubrać w dowolny wygląd.
+W tym projekcie jest **gotowy szablon strony** (nazywa się `studio-base`). To silnik: ma zaprogramowane wszystkie klocki — nagłówek, sekcje, galerię, opinie, stopkę, przyciski. Jest celowo „bezbarwny", żeby dało się go ubrać w dowolny wygląd.
 
-Ty **nie budujesz strony od zera.** Ty dajesz Claude swój wygląd, a Claude **przemalowuje ten gotowy szablon** pod Twój projekt — kolory, czcionki, układ, teksty. To dlatego jest szybko i tanio: nie tworzycie motywu, tylko dostrajacie gotowca.
-
-Masz dwie drogi. Wybierz swoją:
-
-- **Droga A — mam już wygląd strony** (zrobiłeś go w Claude/„Claude design", w Lovable, albo masz plik ze stroną). → przejdź do **Drogi A**.
-- **Droga B — zaczynam od zera, nie mam nic** → przejdź do **Drogi B**.
+Ty **nie budujesz strony od zera.** Dajesz agentowi swój wygląd ze Stitcha, a on **przemalowuje gotowy szablon**: Twoje kolory, czcionki, układ, teksty. Dlatego jest szybko i za darmo — nikt nie tworzy motywu, tylko dostraja gotowca.
 
 ---
 
-## Krok 0 — uruchom Claude Code (raz, na początku) — dotyczy obu dróg
+## Krok 0 — Zainstaluj Antigravity i otwórz projekt (raz, na początku)
 
-Cała ta robota dzieje się **w aplikacji Claude Code**. Jeśli jeszcze jej nie masz:
+1. **Pobierz Google Antigravity** — darmowy program od Google (Mac/Windows). Wpisz w Google „Antigravity download" i pobierz ze strony Google. Zainstaluj jak każdą aplikację (pobierz → otwórz → dalej/dalej). Zaloguj się kontem Google.
+2. **Otwórz w nim ten projekt** — czyli folder, w którym leży ten plik `START-TUTAJ.md`. W Antigravity: **File → Open Folder** (Otwórz folder) i wskaż ten folder.
+3. Po otwarciu zobaczysz z boku listę plików, a w oknie agenta możesz pisać po polsku.
 
-1. **Pobierz Claude Code** na swój komputer (Mac lub Windows) ze strony Anthropic. Nie wiesz skąd? Wpisz w Google „Claude Code download" albo zapytaj o link zwykłego Claude na claude.ai.
-2. **Zainstaluj** jak każdą aplikację (pobierz → otwórz → dalej/dalej).
-3. **Otwórz w niej ten projekt** — czyli folder, w którym leży ten plik `START-TUTAJ.md`. W aplikacji szukasz opcji „Open Folder" / „Otwórz folder" i wskazujesz ten folder (albo przeciągasz go do okna).
+> Utknąłeś? Otwórz [gemini.google.com](https://gemini.google.com) w przeglądarce i napisz: „prowadź mnie krok po kroku, jak zainstalować Google Antigravity i otworzyć w nim folder na Macu/Windowsie". Wróć tu, gdy zobaczysz pliki projektu w oknie.
 
-> Utknąłeś już tutaj? To normalne przy pierwszym razie. Otwórz zwykłego Claude na claude.ai i napisz: „prowadź mnie, jak zainstalować Claude Code i otworzyć w nim folder na Macu/Windowsie". Wróć tu, gdy będziesz mieć projekt otwarty.
-
-Gdy widzisz zawartość tego projektu w oknie Claude Code i możesz do niego pisać — jesteś gotowy. Wybierz swoją drogę (A albo B) poniżej.
+**Test na dowód:** napisz do agenta w Antigravity: *„przywitaj się i powiedz, co widzisz w tym folderze"*. Jak odpowie i wymieni pliki — działa, jedziemy dalej.
 
 ---
 
-## 🅰️ Droga A — mam gotowy wygląd i chcę go na WordPressie
+## Krok 1 — Zaprojektuj wygląd w Google Stitch
 
-### Krok 1 — Przygotuj plik z wyglądem
+1. Wejdź na **[stitch.withgoogle.com](https://stitch.withgoogle.com)** i zaloguj się kontem Google (darmowe).
+2. Opisz stronę po polsku lub angielsku, np.: *„Nowoczesna strona dla studia pilates w Krakowie: duże zdjęcie na górze, oferta 4 zajęć, opinie klientek, sekcja kontakt. Ciepłe kolory, elegancko, spokojnie."*
+3. Stitch narysuje projekt. **Poprawiaj rozmową**: „zmień kolory na beżowo-zielone", „inne zdjęcie główne", „dodaj sekcję cennika" — aż powiesz sobie „to jest to".
+4. **Pobierz kod wyglądu.** Kliknij eksport/kod przy ekranie projektu i **skopiuj lub pobierz kod HTML**.
 
-Jeśli robisz wygląd w Claude na claude.ai:
-1. Poproś Claude o zaprojektowanie strony (opisz firmę, co ma być na stronie).
-2. Gdy wygląd Ci się podoba, **pobierz go na dysk** (przycisk pobierania nad projektem — dostaniesz plik, zwykle ZIP albo plik `.html`).
+> ⚠️ **Ważny haczyk Stitcha:** przycisk „Export ZIP" potrafi dać paczkę BEZ kodu (tylko obrazek i opis). Jeśli tak się stało — wróć i użyj opcji **skopiowania/eksportu kodu HTML** dla każdego ekranu (wklej go do zwykłego pliku tekstowego i zapisz jako `strona.html`). Nie wiesz jak? Zapytaj agenta w Antigravity: „jak zapisać kod ze Stitcha do pliku html?".
 
-Masz już plik z Lovable lub skądinąd? Świetnie, użyj go.
+> Masz już wygląd skądinąd (Lovable, Claude, stary projekt) albo tylko **link** do podglądu? Też dobrze — użyjesz go w Kroku 3 zamiast pliku ze Stitcha.
 
-> **A jeśli nie mam pliku, tylko link?** Zdarza się (np. w Lovable), że nie da się nic „pobrać" — masz tylko adres podglądu strony. To też wystarczy: **skopiuj ten link** i użyj go zamiast pliku w Kroku 3 (wklej link Claude).
+---
 
-### Krok 2 — Włóż plik do projektu
+## Krok 2 — Włóż plik z wyglądem do projektu
 
-Robisz to w oknie swojego komputera (Finder na Macu, Eksplorator na Windows), nie w Claude:
+Robisz to w oknie swojego komputera (Finder na Macu, Eksplorator na Windows):
 
-1. Otwórz folder tego projektu — ten sam, w którym widzisz plik `START-TUTAJ.md`.
-2. Kliknij **prawym przyciskiem myszy** w pustym miejscu → **Nowy folder** → nazwij go dokładnie **`MOJ-PROJEKT`**.
-3. **Przeciągnij swój plik** z wyglądem do tego folderu. Może to być pojedynczy plik `.html`, folder albo `.zip` — **bez znaczenia, Claude sam rozpozna**. ZIP-a nie musisz rozpakowywać.
+1. Otwórz folder tego projektu — ten sam, w którym widzisz `START-TUTAJ.md`.
+2. Kliknij **prawym przyciskiem** w pustym miejscu → **Nowy folder** → nazwij go dokładnie **`MOJ-PROJEKT`**.
+3. **Przeciągnij tam swój plik** z wyglądem. Może to być `.html`, kilka plików, folder albo `.zip` — bez znaczenia, agent sam rozpozna. ZIP-a nie rozpakowuj.
 
-> Coś nie gra (nie wiesz, gdzie jest folder projektu; nie masz pewności, czy Twój plik się nadaje)? Nie kombinuj — po prostu zapytaj w Claude Code: „gdzie mam wrzucić plik z moim wyglądem i czy ten plik się nadaje?".
+> Nie masz pewności, czy plik się nadaje? Wrzuć go i zapytaj agenta: „czy plik w MOJ-PROJEKT nadaje się na stronę?".
 
-### Krok 3 — Powiedz Claude, co ma zrobić
+---
 
-Otwórz projekt w Claude Code i wklej dokładnie to zdanie (podmień nazwę pliku na swoją):
+## Krok 3 — Powiedz agentowi, co ma zrobić
 
-> **„Mam gotowy wygląd strony w folderze MOJ-PROJEKT (plik: nazwa-pliku.zip). Przerób pod niego szablon studio-base i przygotuj stronę na WordPressa. Prowadź mnie krok po kroku, jestem początkujący."**
+W Antigravity wklej dokładnie to zdanie (podmień nazwę pliku na swoją):
+
+> **„Mam gotowy wygląd strony w folderze MOJ-PROJEKT (plik: strona.html). Przeczytaj AGENTS.md i przerób pod ten wygląd gotowy szablon studio-base, przygotuj stronę na WordPressa. Prowadź mnie krok po kroku, jestem początkujący."**
 
 Masz tylko link zamiast pliku? Wklej zamiast tego:
 
-> **„Mój wygląd strony jest pod tym linkiem: [wklej link]. Przerób pod niego szablon studio-base i przygotuj stronę na WordPressa. Prowadź mnie krok po kroku, jestem początkujący."**
+> **„Mój wygląd strony jest pod tym linkiem: [wklej link]. Przeczytaj AGENTS.md i przerób pod ten wygląd gotowy szablon studio-base, przygotuj stronę na WordPressa. Prowadź mnie krok po kroku, jestem początkujący."**
 
-Od tego momentu Claude przejmuje stery. Pokaże Ci, jak strona będzie wyglądać, **zanim** cokolwiek zbuduje, i poprosi o Twoją zgodę. Oglądasz, mówisz „ok" albo „zmień to i to".
+Od tego momentu agent przejmuje stery. Pokaże Ci, jak strona będzie wyglądać, **zanim** cokolwiek zbuduje, i poprosi o zgodę. Oglądasz, mówisz „ok" albo „zmień to i to". Nic nie powstaje bez Twojego „ok".
 
-### Krok 4 — Załóż hosting (jeśli jeszcze nie masz)
+---
 
-Strona musi „gdzieś mieszkać". To hosting.
-- Polecany: **LH.pl, plan Mango** (pod niego wszystko jest dostrojone) — ale każdy hosting WordPress z „SSH" zadziała.
-- Potrzebujesz też **domeny** (adresu strony, np. `twojafirma.pl`).
+## Krok 4 — Załóż hosting (jeśli jeszcze nie masz)
 
-Nie masz pojęcia, co wybrać? Napisz Claude: „nie mam jeszcze hostingu, doradź mi, co kupić i jak". Zakup robisz Ty sam (Claude nigdy nie wpisuje Twoich danych do płatności).
+Strona musi „gdzieś mieszkać" — to hosting. Adres, pod którym ludzie ją znajdą — to domena.
 
-> **Po zakupie** hostingu dostaniesz maila z danymi do panelu (panel.lh.pl). **Zapisz ten mail** — dane do serwera przydadzą się w następnym kroku.
+- Polecany hosting: **LH.pl, plan Mango** (pod niego wszystko jest dostrojone) — ale każdy hosting WordPress z „SSH" zadziała.
+- Domena np. `twojafirma.pl` — kupujesz razem z hostingiem.
 
-### Krok 5 — Wpuść Claude na hosting (bezpiecznie, przez „klucz")
+Nie wiesz, co wybrać? Zapytaj agenta: „nie mam hostingu, doradź mi co kupić i jak". **Zakup robisz sam** — agent nigdy nie dostaje Twoich danych do płatności.
 
-Żeby Claude wgrał stronę, musi mieć dostęp do serwera. Robi się to **kluczem**, nie hasłem — to bezpieczne.
+> **Po zakupie** dostaniesz maila z danymi do panelu (panel.lh.pl). **Zachowaj go** — dane serwera przydadzą się w następnym kroku.
 
-**Czym jest „klucz"?** Wyobraź sobie, że dorabiasz Claude osobną wejściówkę do serwera. Claude **nie zna Twojego hasła** — ma tylko swój bilet wstępu, który w każdej chwili możesz cofnąć. Dlatego to bezpieczniejsze niż dawanie hasła.
+---
 
-**Uprzedzenie — ten jeden krok wygląda technicznie, ale to tylko kopiuj-wklej:**
-- Trzeba raz otworzyć **Terminal** (na Macu) albo **PowerShell** (na Windows) — to takie czarne/białe okienko do wpisywania poleceń. Wygląda groźnie, ale Ty tylko wklejasz gotowe rzeczy od Claude.
-- Gdy w tym okienku poprosi Cię o **hasło i podczas pisania NIC się nie pojawia** (żadnych kropek, żadnych gwiazdek) — **to normalne, tak ma być**. Wpisz hasło „na ślepo" i naciśnij Enter. Nic się nie zepsuło.
+## Krok 5 — Wpuść agenta na hosting (bezpiecznie, przez „klucz")
 
-Napisz w czacie:
+Żeby agent wgrał stronę, musi mieć dostęp do serwera. Robi się to **kluczem**, nie hasłem.
+
+**Czym jest „klucz"?** Wyobraź sobie, że dorabiasz agentowi osobną wejściówkę do serwera. Agent **nie zna Twojego hasła** — ma tylko swój bilet, który w każdej chwili możesz odebrać. To bezpieczniejsze niż dawanie komukolwiek hasła.
+
+**Uprzedzenie — ten krok wygląda technicznie, ale to tylko kopiuj-wklej:**
+- Antigravity ma **wbudowane okienko poleceń (terminal)** — nie musisz nic dodatkowego instalować. Agent przygotuje gotowe komendy, Ty je zatwierdzasz.
+- Raz, przy pierwszym połączeniu, serwer poprosi o **hasło — i podczas wpisywania NIC się nie pojawia** (żadnych kropek ani gwiazdek). **To normalne, tak ma być.** Wpisz „na ślepo" i naciśnij Enter. Nic się nie zepsuło.
+
+Napisz do agenta:
 
 > **„Chcę wgrać stronę na hosting LH. Daj mi instrukcję krok po kroku, jak włączyć SSH i wpuścić Cię kluczem. Jestem początkujący, prowadź mnie bardzo dokładnie."**
 
-Claude da Ci **dokładną instrukcję**: co kliknąć w panelu LH, skąd wziąć trzy dane (adres serwera, port, login — są w panelu LH: Serwery → Ustawienia) i **jaką komendę wkleić** w to okienko.
+Agent powie Ci: co kliknąć w panelu LH, skąd wziąć trzy dane (adres serwera, port, login — są w panelu: Serwery → Ustawienia) i co wkleić w okienko poleceń.
 
-⚠️ **Ważna zasada bezpieczeństwa:** **nigdy nie podajesz Claude swojego hasła** do hostingu ani banku. Podajesz tylko te trzy niegroźne dane (adres serwera, port, login). Klucz wystarczy.
-
-### Krok 6 — Claude wgrywa stronę
-
-Claude wgra całą stronę na serwer i **sam sprawdzi**, że działa (pokaże Ci dowód). Ty tylko potwierdzasz „tak, wgrywamy na żywo".
-
-### Krok 7 — Edytujesz stronę
-
-- **Drobne zmiany** (teksty, zdjęcia) — robisz sam w panelu WordPress. Claude pokaże Ci gdzie.
-- **Większe zmiany** (nowa sekcja, inny układ) — mówisz Claude w czacie, on to robi.
-
-**Gotowe. Masz swoją stronę na WordPressie.** ✅
+⚠️ **Żelazna zasada bezpieczeństwa:** **hasła nie wpisujesz nigdzie poza okienkiem serwera, gdy ono samo o nie pyta.** Agentowi w czacie podajesz tylko trzy niegroźne dane: adres serwera, port, login. Nigdy hasło.
 
 ---
 
-## 🅱️ Droga B — zaczynam od zera
+## Krok 6 — Agent wgrywa stronę
 
-Nie masz jeszcze wyglądu? Claude zaprojektuje go z Tobą.
-
-### Krok 1 — Opisz, czego chcesz
-
-Najprościej — wklej w czacie:
-
-> **„Chcę zrobić stronę dla [nazwa firmy / czego dotyczy]. Nie mam jeszcze projektu. Poprowadź mnie od początku, jestem początkujący."**
-
-Claude zada Ci kilka prostych pytań (co firma robi, dla kogo, jakie podstrony). To jest **brief** — nie musisz nic pisać wcześniej, Claude wyciągnie to z Ciebie rozmową.
-
-### Krok 2 — Claude projektuje, Ty akceptujesz
-
-Claude pokaże propozycję wyglądu (kolory, układ, sekcje). Oglądasz, mówisz co zmienić. **Nic nie jest budowane, dopóki nie powiesz „podoba mi się".**
-
-### Krok 3 — dalej tak samo jak w Drodze A
-
-Od momentu akceptacji wyglądu robicie to samo co w Drodze A od **Kroku 4** (hosting → SSH → wgranie → edycja).
+Agent wgra całą stronę na serwer i **sam sprawdzi, że działa** (pokaże Ci dowód — stronę otwartą pod Twoim adresem). Ty tylko potwierdzasz „tak, wgrywamy na żywo". Potem otwórz swoją domenę w przeglądarce i zobacz stronę w prawdziwym internecie. 🎉
 
 ---
 
-## Czego będziesz potrzebować (lista)
+## Krok 7 — Edytujesz stronę
+
+- **Drobne zmiany** (teksty, zdjęcia) — robisz sam w panelu WordPress (`twojadomena.pl/wp-admin`). Agent pokaże Ci gdzie co jest.
+- **Większe zmiany** (nowa sekcja, inny układ) — mówisz agentowi w Antigravity, on robi i wgrywa.
+
+**Gotowe. Masz swoją stronę na WordPressie — zbudowaną darmowymi narzędziami.** ✅
+
+---
+
+## Droga B — nie mam wyglądu, zaczynam od zera
+
+Nie chcesz zaczynać od Stitcha? Napisz agentowi w Antigravity:
+
+> **„Chcę zrobić stronę dla [nazwa firmy / czego dotyczy]. Nie mam projektu. Przeczytaj AGENTS.md i poprowadź mnie od początku, jestem początkujący."**
+
+Agent zada kilka prostych pytań (co firma robi, dla kogo, jakie podstrony), pokaże propozycję wyglądu do akceptacji, a dalej wszystko idzie jak w Krokach 4–7.
+
+> Wskazówka: i tak warto najpierw pobawić się Stitchem — łatwiej ocenić gotowy obrazek, niż opisywać wygląd słowami.
+
+---
+
+## Czego potrzebujesz (lista)
 
 ```
-[ ] Ten projekt otwarty w Claude Code
-[ ] (Droga A) plik/ZIP z wyglądem strony
-[ ] Hosting WordPress z SSH (polecany: LH.pl Mango)
-[ ] Domena (adres strony)
-[ ] Trochę cierpliwości do klikania — Claude prowadzi za rękę
+[ ] Konto Google (darmowe)
+[ ] Google Antigravity zainstalowane + ten projekt otwarty (Krok 0)
+[ ] Wygląd strony ze Stitcha (albo skądinąd) — plik lub link
+[ ] Hosting WordPress z SSH (polecany: LH.pl Mango) + domena
+[ ] Cierpliwość do klikania — agent prowadzi za rękę
 ```
 
 ## Gdy się zgubisz
 
-- **„Nie rozumiem"** → napisz to Claude, poprosi prościej.
-- **„Coś nie działa"** → opisz co widzisz, Claude zdiagnozuje.
-- **„Gdzie ja jestem w procesie?"** → zapytaj „na którym kroku jesteśmy i co dalej".
-
-Nie ma głupich pytań. Cały ten system jest po to, żebyś **nie musiał być technikiem.**
+- **„Nie rozumiem"** → napisz to agentowi, wytłumaczy prościej.
+- **„Coś nie działa"** → opisz, co widzisz (możesz wkleić zrzut ekranu), agent zdiagnozuje.
+- **„Gdzie ja jestem w procesie?"** → zapytaj: „na którym kroku ze START-TUTAJ jesteśmy i co dalej?".
 
 ---
 
 ### Dla ciekawskich — co jest pod spodem
 
-Jeśli chcesz zrozumieć więcej (nie musisz): `README.md` opisuje system ogólnie, a folder `wiedza/` ma szczegółowe instrukcje, z których Claude korzysta sam w tle. Ty ich czytać nie musisz.
+`README.md` opisuje system ogólnie, folder `wiedza/` zawiera szczegółowe instrukcje techniczne, a `AGENTS.md` to rozkaz dzienny dla agenta. **Te pliki czyta agent, nie Ty** — możesz je pominąć. Projekt działa też z Claude Code (płatnym) — instrukcje agenta są w `CLAUDE.md`; przebieg dla Ciebie jest ten sam.

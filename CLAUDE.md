@@ -10,6 +10,8 @@ Zawsze pokaż projekt (sekcje + system wizualny) i uzyskaj akceptację, zanim za
 
 ## Jak zacząć (dla użytkownika)
 
+> **Dwa środowiska agenta:** kursanci pracują w **Google Antigravity** (darmowe; jego instrukcje = `AGENTS.md`, design robią w **Google Stitch**). Ten plik (`CLAUDE.md`) czyta Claude Code. Oba pliki opisują TEN SAM proces — zmiany w regułach wprowadzaj w obu.
+
 Użytkownicy to często **początkujący, nietechniczni** ludzie (kursanci). Prosty przewodnik dla nich to **`START-TUTAJ.md`** — trzymaj się jego języka i kolejności, gdy ktoś jest zagubiony. Są dwie drogi wejścia:
 
 - **Droga A — gotowy wygląd (ZIP / „Claude design" / Lovable):** użytkownik ma już design i chce go na WordPressie. Prowadź migrację na silnik `studio-base` wg `wiedza/10` (nie odpytuj z pełnego briefu; strukturę bierzesz z designu). Dyrygent `strona-od-briefu` rozpoznaje to wejście.

@@ -2,7 +2,7 @@
 
 > 👉 **Początkujący? Zacznij od [`START-TUTAJ.md`](START-TUTAJ.md)** — prosty przewodnik krok po kroku, bez żargonu. Ten README jest bardziej szczegółowy.
 
-System do Claude Code, który prowadzi Cię od briefu klienta do wdrożonej strony na WordPressie. Strona powstaje jako **własny motyw (custom classic theme)** — czysty kod PHP/HTML/CSS/JS, bez Elementora i innych page-builderów. Masz pełną kontrolę nad wyglądem, animacjami i wydajnością.
+System dla agenta AI, który prowadzi Cię od projektu graficznego (lub briefu klienta) do wdrożonej strony na WordPressie. Działa z **Google Antigravity (darmowy — instrukcje agenta w `AGENTS.md`)** oraz z **Claude Code (instrukcje w `CLAUDE.md`)**. Wygląd projektujesz za darmo w **Google Stitch** (albo w Claude/Lovable). Strona powstaje jako **własny motyw (custom classic theme)** — czysty kod PHP/HTML/CSS/JS, bez Elementora i innych page-builderów. Masz pełną kontrolę nad wyglądem, animacjami i wydajnością.
 
 ## Co to jest i co daje
 
