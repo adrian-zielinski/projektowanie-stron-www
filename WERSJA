@@ -1,0 +1,17 @@
+2026.08.11
+
+# Historia wersji systemu
+# (najnowsza na górze; pierwsza linia pliku to numer aktualnej wersji)
+
+## 2026.08.11
+- Rezerwacje z synchronizacją Booking.com — gotowa wtyczka `szablony-startowe/wtyczki/rezerwacje-ical/`
+  (kalendarz dostępności, import zajętości z Booking.com, eksport własnych rezerwacji), SOP: `wiedza/11`.
+- Twarda reguła 0 dla agenta: kod ze Stitcha (`code.html`) jest źródłem prawdy — strona ma wyjść 1:1
+  jak projekt. Koniec z „podobnym" układem, brakującymi tekstami i zdjęciami.
+- Skrypt `szablony-startowe/narzedzia/stitch-assety.sh` — pobiera wszystkie grafiki z eksportu Stitcha,
+  zanim wygasną linki Google (to była częsta przyczyna stron bez zdjęć).
+- `wiedza/10` przepisana: Stitch jako główna ścieżka, obowiązkowy audyt zgodności z projektem przed
+  ogłoszeniem „gotowe".
+- Poprawka silnika: domyślny typ firmy w danych dla Google to `Organization` (wcześniej zostawał typ
+  z poprzedniego projektu).
+- Nowość: `aktualizuj.sh` — jedno polecenie aktualizuje system do najnowszej wersji.

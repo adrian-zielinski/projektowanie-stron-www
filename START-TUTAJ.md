@@ -60,6 +60,18 @@ Po każdej większej zmianie (np. skończony etap strony klienta) napisz agentow
 
 To Twoja kopia zapasowa. Komputer może paść — projekt na GitHubie przeżyje.
 
+### 0e. Jak dostawać ulepszenia od prowadzącego
+
+Twoja kopia projektu jest **od tej chwili osobna** — działa u Ciebie i nikt jej nie rusza. To dobrze (nikt Ci nic nie zepsuje), ale ma jeden skutek: **gdy prowadzący ulepszy system, Twoja kopia sama się nie zaktualizuje.**
+
+Dlatego w projekcie jest przycisk „pobierz najnowszą wersję". Gdy dostaniesz wiadomość, że jest nowa wersja, napisz do agenta:
+
+> **„Zaktualizuj system do najnowszej wersji — uruchom aktualizuj.sh."**
+
+Co się stanie: agent pobierze najnowsze instrukcje, wiedzę i gotowe szablony, a **Twojej pracy nie ruszy** — strony klientów, briefy i motywy, które zrobiłeś, zostają nietknięte. Na wszelki wypadek zrobi też kopię poprzednich plików systemowych (folder `_kopia-przed-aktualizacja`).
+
+Aktualną wersję i listę nowości znajdziesz w pliku **`WERSJA`**. Aktualizuj się spokojnie — im nowsza wersja, tym mniej wpadek i tym więcej gotowców (np. system rezerwacji z synchronizacją Booking.com).
+
 ---
 
 ## Krok 1 — Zaprojektuj wygląd w Google Stitch

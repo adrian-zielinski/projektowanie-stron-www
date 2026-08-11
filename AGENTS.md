@@ -18,6 +18,7 @@ Ten plik czyta agent AI pracujący w tym projekcie (Google Antigravity czyta go 
 | Migracja gotowego designu (Stitch/Lovable/inny) na WP | `wiedza/10-migracja-z-generatora-na-wordpress.md` |
 | Wdrożenie na hosting przez SSH (LH.pl, klucz, wp-cli) | `wiedza/09-wdrozenie-produkcja-lh-ssh.md` |
 | Rezerwacje na stronie + sync kalendarza z Booking.com (iCal) | `wiedza/11-rezerwacje-ical-booking.md` + gotowa wtyczka `szablony-startowe/wtyczki/rezerwacje-ical/` |
+| Użytkownik prosi o aktualizację systemu / „jest nowa wersja" | uruchom `bash aktualizuj.sh` (szczegóły niżej: „Aktualizacja systemu") |
 | Budowa/struktura motywu, ACF/SCF, deploy | `.claude/skills/wordpress-budowa/SKILL.md` + `wiedza/06-stack-technologiczny.md` |
 | Praktyka: baza+dziecko, Playground, pułapki | `wiedza/08-praktyka-wp-narzedzia-workflow.md` |
 | Design, paleta, typografia, anti-slop | `.claude/skills/web-design-anti-slop/SKILL.md` + `wiedza/01` |
@@ -44,6 +45,14 @@ Pliki w `.claude/skills/` to zwykłe instrukcje markdown — czytaj je i stosuj,
 5. **Weryfikuj, nie deklaruj.** Po każdym etapie pokaż dowód (podgląd, zrzut, `curl` z zewnątrz po wdrożeniu). Nie mów „gotowe" bez sprawdzenia.
 6. **Bezpieczeństwo dostępów:** NIGDY nie proś użytkownika o hasło do hostingu/panelu i nigdy go nie zapisuj. Dostęp do serwera wyłącznie kluczem SSH (procedura w `wiedza/09`). Hasło użytkownik wpisuje sam, bezpośrednio w terminalu, gdy pyta o nie serwer.
 7. **Wdrożenie na żywą domenę tylko po wyraźnym „tak"** użytkownika; przy działającym biznesie najpierw staging.
+
+## Aktualizacja systemu (gdy użytkownik mówi „zaktualizuj", „jest nowa wersja")
+
+Uruchom `bash aktualizuj.sh` z katalogu projektu. Skrypt pobiera najnowszą wersję od prowadzącego i nadpisuje **wyłącznie część systemową** (`AGENTS.md`, `GEMINI.md`, `CLAUDE.md`, `README.md`, `START-TUTAJ.md`, `WERSJA`, `wiedza/`, `szablony-startowe/`, `.claude/skills/`, szablon briefu). Praca użytkownika (`Klienci/`, jego briefy, jego motywy) zostaje nietknięta, a poprzednie pliki systemowe lądują w `_kopia-przed-aktualizacja/`.
+
+Po aktualizacji: **przeczytaj `WERSJA`** i powiedz użytkownikowi po ludzku, co doszło. Potem stosuj już nowe reguły — mogły się zmienić.
+
+Gdy `bash` jest niedostępny (np. czysty Windows bez Git Bash), zrób to samo ręcznie: pobierz `https://github.com/adrian-zielinski/projektowanie-stron-www/archive/refs/heads/main.tar.gz`, rozpakuj i skopiuj **tylko** wymienione wyżej ścieżki, nadpisując istniejące pliki i **nie kasując** niczego, czego nie ma w paczce.
 
 ## Jak mówić do użytkownika
 
