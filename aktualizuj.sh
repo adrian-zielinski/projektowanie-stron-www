@@ -43,8 +43,10 @@ sprawdz() {
 	local stara="brak"
 	[ -f WERSJA ] && stara="$(head -1 WERSJA)"
 
+	# Znacznik czasu w adresie omija cache CDN GitHuba (inaczej przez kilka minut
+	# po publikacji widać starą wersję i skrypt proponowałby zbędną aktualizację).
 	local nowa
-	if ! nowa="$(curl -fsSL --max-time 10 "$ZRODLO_WERSJA" 2>/dev/null | head -1)"; then
+	if ! nowa="$(curl -fsSL --max-time 10 -H 'Cache-Control: no-cache' "${ZRODLO_WERSJA}?t=$(date +%s)" 2>/dev/null | head -1)"; then
 		echo "? Nie udało się sprawdzić wersji (brak internetu?). Pracuj dalej normalnie."
 		exit 1
 	fi
@@ -52,6 +54,17 @@ sprawdz() {
 	if [ "$stara" = "$nowa" ]; then
 		echo "✓ System aktualny (wersja $nowa)."
 		exit 0
+	fi
+
+	# Aktualizujemy tylko, gdy zdalna wersja jest NOWSZA. Gdy lokalna jest nowsza
+	# lub równa (np. cache GitHuba, praca prowadzącego) — nic nie proponujemy.
+	if [ "$stara" != "brak" ]; then
+		local najnowsza
+		najnowsza="$(printf '%s\n%s\n' "$stara" "$nowa" | sort -V | tail -1)"
+		if [ "$najnowsza" = "$stara" ]; then
+			echo "✓ System aktualny (wersja $stara)."
+			exit 0
+		fi
 	fi
 
 	echo "! JEST NOWSZA WERSJA SYSTEMU: $nowa (masz: $stara)"

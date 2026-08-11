@@ -1,7 +1,10 @@
-2026.08.11.4
+2026.08.11.5
 
 # Historia wersji systemu
 # (najnowsza na górze; pierwsza linia pliku to numer aktualnej wersji)
+
+## 2026.08.11.5
+- Poprawka sprawdzania wersji: koniec z fałszywym „jest nowsza wersja" (cache GitHuba).
 
 ## 2026.08.11.4
 - Automatyczne wykrywanie nowych wersji: agent na starcie każdej rozmowy sam sprawdza,
