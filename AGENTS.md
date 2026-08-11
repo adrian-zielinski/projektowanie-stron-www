@@ -17,6 +17,7 @@ Ten plik czyta agent AI pracujący w tym projekcie (Google Antigravity czyta go 
 |---|---|
 | Migracja gotowego designu (Stitch/Lovable/inny) na WP | `wiedza/10-migracja-z-generatora-na-wordpress.md` |
 | Wdrożenie na hosting przez SSH (LH.pl, klucz, wp-cli) | `wiedza/09-wdrozenie-produkcja-lh-ssh.md` |
+| Rezerwacje na stronie + sync kalendarza z Booking.com (iCal) | `wiedza/11-rezerwacje-ical-booking.md` + gotowa wtyczka `szablony-startowe/wtyczki/rezerwacje-ical/` |
 | Budowa/struktura motywu, ACF/SCF, deploy | `.claude/skills/wordpress-budowa/SKILL.md` + `wiedza/06-stack-technologiczny.md` |
 | Praktyka: baza+dziecko, Playground, pułapki | `wiedza/08-praktyka-wp-narzedzia-workflow.md` |
 | Design, paleta, typografia, anti-slop | `.claude/skills/web-design-anti-slop/SKILL.md` + `wiedza/01` |

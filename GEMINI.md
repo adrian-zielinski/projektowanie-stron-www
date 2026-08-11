@@ -67,6 +67,7 @@ Szczegóły każdego tematu w `wiedza/`:
 - `08-praktyka-wp-narzedzia-workflow.md` — **lekcje z praktyki**: reużywalny motyw baza+dziecko, WordPress Playground (lokalny WP bez Dockera), transkrypcja głosówek klienta, wielo-agentowe workflow, toolkit animacji, QA podglądu (overflow/cache-busting), galerie efektów + wrażliwość
 - `09-wdrozenie-produkcja-lh-ssh.md` — **wdrożenie na LH przez SSH krok po kroku**: instrukcja DLA KLIENTA (włącz SSH w panel.lh.pl + wpuść asystenta kluczem), sprawdzona sekwencja wp-cli (motyw→ACF→importer→permalinki→media), weryfikacja z zewnątrz, pułapki (rozjechane hasło bazy = 500, DirectAdmin :2222 zablokowany, PHP z phpMyAdmin ≠ PHP strony, ffmpeg/libx265, ścieżka WP w autoinstalatorze)
 - `10-migracja-z-generatora-na-wordpress.md` — **przeniesienie gotowej strony** z Claude design / Lovable / v0 / Bolt na silnik `studio-base` (baza+dziecko): ekstrakcja tokenów → mapowanie sekcji → treść do SCF/ACF → przekierowania 301 → deploy
+- `11-rezerwacje-ical-booking.md` — **rezerwacje + dwukierunkowa synchronizacja z Booking.com** przez iCal: gotowa wtyczka `szablony-startowe/wtyczki/rezerwacje-ical/`, import/eksport kalendarza, cron, bezpieczeństwo feedu, pułapki
 
 ## Struktura
 

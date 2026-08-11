@@ -1,0 +1,24 @@
+/* ===== Rezerwacje ===== */
+.rez { padding: 128px 0 96px; }
+.rez__in { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--margin-mobile); }
+@media (min-width: 1024px) { .rez__in { padding: 0 var(--margin-desktop); } }
+.rez h1 { font-size: 32px; line-height: 40px; font-weight: 600; color: var(--c-on-surface); max-width: 42rem; margin: 0; }
+.rez__grid { display: grid; grid-template-columns: 1fr; gap: var(--gutter); align-items: start; }
+@media (min-width: 1024px) { .rez__grid { grid-template-columns: 7fr 5fr; } }
+.rez__nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.rez__nav strong { font-size: 18px; text-transform: capitalize; color: var(--c-on-surface); }
+.rez__arrow { width: 40px; height: 40px; border: 1px solid var(--c-outline-variant); background: var(--c-surface-lowest); border-radius: var(--r-lg); cursor: pointer; font-size: 16px; color: var(--c-on-surface); transition: background .2s; }
+.rez__arrow:hover { background: var(--c-surface-low); }
+.rez__dow, .rez__days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.rez__dow span { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--c-on-surface-variant); text-align: center; padding: 8px 0; }
+.rez__day { aspect-ratio: 1; border: 1px solid rgba(197,198,205,0.35); background: var(--c-surface-lowest); border-radius: var(--r-lg); font-size: 14px; color: var(--c-on-surface); cursor: pointer; transition: background .15s, border-color .15s; }
+.rez__day:hover:not(:disabled) { border-color: var(--c-secondary); background: var(--c-secondary-fixed); }
+.rez__day.is-busy { background: #fdecea; color: var(--c-error); text-decoration: line-through; cursor: not-allowed; }
+.rez__day.is-past { background: var(--c-surface-low); color: var(--c-outline); cursor: not-allowed; }
+.rez__day.is-sel { background: var(--c-on-secondary-fixed); border-color: var(--c-on-secondary-fixed); color: var(--c-on-primary); }
+.rez__legend { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--c-on-surface-variant); margin: 16px 0 0; }
+.rez__dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-left: 8px; }
+.rez__dot--free { background: var(--c-surface-lowest); border: 1px solid var(--c-outline-variant); }
+.rez__dot--busy { background: #fdecea; border: 1px solid var(--c-error); }
+.rez__dot--sel { background: var(--c-on-secondary-fixed); }
+.rez .form-msg { margin-bottom: 24px; }
