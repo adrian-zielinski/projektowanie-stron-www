@@ -28,8 +28,16 @@ Pliki w `.claude/skills/` to zwykłe instrukcje markdown — czytaj je i stosuj,
 
 ## Twarde reguły
 
+0. **Kod z generatora (Stitch `code.html`) jest ŹRÓDŁEM PRAWDY — odwzoruj go 1:1.** To reguła nadrzędna nad „przemaluj bazę tokenami". Konkretnie:
+   - **Nie wciskaj designu w gotowe sekcje bazy, jeśli układ się nie zgadza.** Biblioteka sekcji studio-base to wzorce OGÓLNE; design ze Stitcha ma zwykle własny, konkretny layout (np. hero z kartą formularza obok, karty case study z 3 kolumnami wyzwanie/rozwiązanie/wynik). Gdy wzorca brakuje — napisz szablony i CSS w motywie-dziecku (`front-page.php`, `header.php`, `footer.php`, własny arkusz), a bazy użyj tylko tam, gdzie sekcja faktycznie pasuje. Motyw-dziecko MOŻE mieć własne szablony — to nadal model baza+dziecko.
+   - **Przenieś KAŻDĄ sekcję i KAŻDY tekst** z `code.html` — po skończeniu porównaj listę sekcji i treści 1:1 z kodem źródłowym. Brak połowy tekstów = praca niewykonana.
+   - **Kolory i typografię bierz z `tailwind.config` w `code.html`** (dokładne hexy, rozmiary, wagi, letter-spacing, promienie zaokrągleń), nie „na oko" i nie z samego `DESIGN.md` (bywa rozbieżny z finalnym kodem).
+   - **Zdjęcia POBIERZ lokalnie od razu.** Linki `lh3.googleusercontent.com/aida-public/...` wygasają — ściągnij je do motywu/biblioteki mediów przy pierwszym podejściu (wyższa rozdzielczość: dopisz `=w1600` na końcu URL-a). Wykorzystaj też PNG z folderów eksportu Stitcha.
+   - **Ikony:** design Stitcha używa fontu **Material Symbols Outlined** (w tym wariantu wypełnionego `FILL 1`) — załaduj ten font albo wstaw identyczne SVG. Nie podmieniaj ikon na „podobne".
+   - **Dowód zgodności:** przed pokazaniem użytkownikowi zestaw własny zrzut ekranu ze `screen.png` z eksportu Stitcha. Jeśli różnią się układem, kolorami lub brakuje treści — popraw, zanim ogłosisz „gotowe".
+   - **Wyczyść pozostałości po poprzednich projektach:** tytuł strony, tagline, typ schema (`business_type` — domyślnie ustaw `Organization`), demo-strony. Nic z poprzedniego klienta nie może wyciec.
 1. **Design przed implementacją.** Pokaż propozycję (podgląd/opis sekcji + paleta), uzyskaj wyraźne „ok", dopiero potem koduj. Implementacja bez akceptacji = zmarnowana praca.
-2. **Silnik studio-base jest nietykalny w warstwie marki.** Marka (kolory, fonty, treść, zdjęcia) żyje WYŁĄCZNIE w motywie-dziecku (`tokens.css` + pola SCF). Do bazy dopisuj tylko nowe, neutralne typy sekcji, gdy w bibliotece brakuje wzorca.
+2. **Silnik studio-base jest nietykalny w warstwie marki.** Marka (kolory, fonty, treść, zdjęcia) żyje WYŁĄCZNIE w motywie-dziecku (`tokens.css` + pola SCF + ewentualne własne szablony dziecka). Do bazy dopisuj tylko nowe, neutralne typy sekcji, gdy w bibliotece brakuje wzorca. Uwaga: ta reguła mówi GDZIE żyje marka, a nie że wolno używać wyłącznie sekcji bazy — wierność designowi (reguła 0) jest ważniejsza niż reużycie sekcji.
 3. **Tokeny w komplecie.** Motyw-dziecko nadpisuje w `:root` nie tylko hexy (`--c-primary`, `--c-bg`, `--c-accent`…), ale też kanały RGB (`--c-primary-rgb`, `--c-bg-rgb`, `--c-accent-rgb`, `--c-accent-2-rgb`, `--c-ink-rgb`) — bez nich przezroczystości zostaną w kolorach bazy.
 4. **SEO od startu:** jedno H1 na stronę, semantyczny HTML, meta, schema (moduł w `studio-base/inc/seo.php`). Fonty lokalnie przed startem produkcyjnym (RODO) — przepis w `wiedza/10`.
 5. **Weryfikuj, nie deklaruj.** Po każdym etapie pokaż dowód (podgląd, zrzut, `curl` z zewnątrz po wdrożeniu). Nie mów „gotowe" bez sprawdzenia.

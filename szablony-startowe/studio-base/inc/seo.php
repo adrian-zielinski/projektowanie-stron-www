@@ -99,7 +99,7 @@ add_action( 'wp_head', function () {
 	$url   = home_url( '/' );
 	$img   = sb_seo_image();
 
-	$ld = array( '@context' => 'https://schema.org', '@type' => ( $get( 'business_type' ) ?: 'MedicalClinic' ), 'name' => $site, 'url' => $url );
+	$ld = array( '@context' => 'https://schema.org', '@type' => ( $get( 'business_type' ) ?: 'Organization' ), 'name' => $site, 'url' => $url );
 	if ( $img ) { $ld['image'] = $img; $ld['logo'] = $img; }
 	if ( $p = $get( 'contact_phone' ) ) { $ld['telephone'] = $p; }
 	if ( $e = $get( 'contact_email' ) ) { $ld['email'] = $e; }

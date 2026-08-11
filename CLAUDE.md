@@ -21,6 +21,7 @@ W obu drogach: motywu nie budujemy od zera — dostrajamy gotowy `studio-base` p
 
 ## Twarde reguły
 
+- **Kod z generatora (Stitch `code.html`) = źródło prawdy — odwzoruj 1:1.** Nie wciskaj designu w sekcje bazy, gdy układ się nie zgadza — pisz szablony w motywie-dziecku. Każda sekcja i każdy tekst przeniesione; kolory/typografia z `tailwind.config` źródła; zdjęcia z CDN pobrane od razu (`szablony-startowe/narzedzia/stitch-assety.sh`); ikony identyczne; na końcu audyt 1:1 (zrzut vs `screen.png`). Pełny protokół: `wiedza/10`, reguła 0 w `AGENTS.md`.
 - **Zero Elementora i builderów wizualnych.** Wygląd piszemy w kodzie (szablony PHP + HTML/CSS/JS). To cały sens projektu.
 - **Design przed implementacją.** Sekcje, paleta, typografia, animacje, potem akceptacja, dopiero kod.
 - **Copy przez `stop-slop`.** Każdy tekst na stronie i w komunikacji bez frazesów AI.
