@@ -1,7 +1,20 @@
-2026.08.11
+2026.08.11.2
 
 # Historia wersji systemu
 # (najnowsza na górze; pierwsza linia pliku to numer aktualnej wersji)
+
+## 2026.08.11.2
+- Nowa metoda domyślna przenoszenia projektu ze Stitcha: agent wkleja surowy kod 1:1
+  (bez „tłumaczenia" na własne style) — to usuwa najczęstszą przyczynę stron
+  niepodobnych do projektu. Przepis: `wiedza/10`, „Wariant A".
+- Agent nie może już powiedzieć „gotowe", dopóki nie pokaże wyników sprawdzenia
+  (podgląd z zewnątrz + porównanie z projektem). Koniec z „100% zgodności" na słowo.
+- Po wgraniu strony agent musi wyczyścić WŁAŚCIWY cache i wyłączyć wtyczki
+  „maintenance" — to one potrafiły pokazywać starą, „gołą" stronę mimo udanego wgrania.
+- Agent nie usunie już niczego z serwera (podstron, wtyczek) bez kopii zapasowej
+  i Twojej zgody.
+- Zakaz placeholderów: formularz z projektu ma być odwzorowany, a nie zastąpiony
+  napisem „zainstaluj wtyczkę".
 
 ## 2026.08.11
 - Rezerwacje z synchronizacją Booking.com — gotowa wtyczka `szablony-startowe/wtyczki/rezerwacje-ical/`

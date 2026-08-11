@@ -106,7 +106,23 @@ Nie budujesz całego motywu od zera — ale **wierność 1:1 jest ważniejsza ni
 
 **Antywzorzec (realna wpadka):** agent wcisnął design Stitcha w generyczne sekcje bazy „bo tak każe reużywalność" — wyszła strona z innym układem, innymi ikonami, bez zdjęć i z ułamkiem tekstów. Jeśli po mapowaniu jakakolwiek treść źródła „nie ma gdzie mieszkać" — to sygnał, że sekcja wymaga własnego szablonu, a nie że treść można pominąć.
 
-**Konwersja klas Tailwinda na CSS dziecka:** przepisuj klasa po klasie na zwykły CSS (wartości z `tailwind.config` źródła). Uwaga na przeskalowane skale Stitcha: `rounded-lg`/`rounded-xl`/`rounded-full` bywają przedefiniowane w configu (np. `full: 0.75rem` — to NIE jest 9999px!). Nie ładuj `cdn.tailwindcss.com` na produkcji.
+### Wariant A — surowy HTML ze Stitcha + Tailwind (DOMYŚLNY dla agentów)
+
+Najpewniejsza droga do wierności 1:1: **nie tłumaczysz kodu, tylko go przenosisz.** Sprawdzone w praktyce — konwersja na własne klasy CSS wielokrotnie kończyła się stroną niepodobną do projektu, wklejenie surowego kodu działa za pierwszym razem.
+
+1. Potnij `code.html` na części: `<header>` → `header.php` dziecka, `<main>` → `front-page.php`, `<footer>` → `footer.php`. **Nie zmieniaj ani klas, ani struktury** — jedynie podmień ścieżki obrazków na lokalne (`get_stylesheet_directory_uri() . '/assets/img/...'`) i dodaj `wp_head()`/`wp_footer()`/`language_attributes()` tam, gdzie wymaga WordPress.
+2. Przenieś do `header.php` **cały blok Tailwinda ze Stitcha**: `<script src="https://cdn.tailwindcss.com"></script>` + `<script id="tailwind-config">tailwind.config={...}</script>` (config skopiowany 1:1) + linki do fontów (Inter, Material Symbols).
+3. Formularze: zachowaj markup z designu 1:1, podmień tylko `action` na `admin-post.php` z obsługą w `functions.php` (wzór: wtyczka/motyw z `szablony-startowe/`). **Żadnych placeholderów** typu „zainstaluj wtyczkę i wstaw shortcode".
+4. **Przed oddaniem produkcyjnym zamień CDN na skompilowany plik** — CDN generuje style w przeglądarce (wolniejszy start, ostrzeżenie w konsoli, zależność od zewnętrznego serwera):
+   ```bash
+   # jednorazowo, w folderze motywu-dziecka; treść skanowana z szablonów PHP
+   npx tailwindcss@3 --content './**/*.php' -o assets/css/tailwind.css --minify
+   ```
+   Config ze Stitcha zapisz jako `tailwind.config.js` (`module.exports = {...}` — ta sama zawartość, co w `<script id="tailwind-config">`). Potem w `header.php` usuń oba `<script>` Tailwinda i enqueue'uj wygenerowany plik. Zweryfikuj po podmianie zrzutem — musi wyglądać identycznie jak z CDN. Gdy `npx` jest niedostępny (brak Node), CDN może zostać jako świadomy kompromis — odnotuj to użytkownikowi jako punkt do domknięcia.
+
+### Wariant B — konwersja na własny CSS (tylko na wyraźne życzenie)
+
+Przepisujesz klasa po klasie na zwykły CSS (wartości z `tailwind.config` źródła). Czystszy wynik, ale każda klasa to okazja do błędu — wybieraj tylko, gdy użytkownik chce kodu bez Tailwinda. Uwaga na przeskalowane skale Stitcha: `rounded-lg`/`rounded-xl`/`rounded-full` bywają przedefiniowane w configu (np. `full: 0.75rem` — to NIE jest 9999px!).
 
 ---
 
@@ -143,6 +159,11 @@ Przy wielu podstronach rozbij konwersję na **równoległych agentów** — jede
 
    **Plan B, gdy przeglądarka in-app zawiedzie** (nawigacja/preview timeoutuje — zdarza się): nie blokuj się na renderze. Kolejno: (a) zbuduj statyczny harness HTML (podłącz `main.css` bazy + `tokens.css` dziecka, wpisz treść wprost w markup zgodny z klasami) i otwórz przez `file://` z folderu **projektu** — nie `localhost` (bywa blokowany polityką); (b) jeśli i to timeoutuje — **poproś klienta o zrzut** tego pliku HTML u siebie; (c) weryfikacja zastępcza z inspekcji kodu: potwierdź, że `main.css` używa wyłącznie `var(--c-*)`/`rgb(var(--c-*-rgb)/…)` (zero zaszytych kolorów) → tokeny dziecka zadziałają. Zaznacz w raporcie, że render potwierdzono kodem, nie zrzutem.
 3. **Wdrożenie na produkcję** — pełna procedura SSH + wp-cli w `09-wdrozenie-produkcja-lh-ssh.md`.
+4. **PO deployu — cache, zanim cokolwiek uznasz za zepsute** (realny przypadek: świeży motyw na serwerze, a domena serwowała „goły tekst bez stylów", bo Cache Enabler trzymał starą stronę jako statyczny HTML):
+   - `wp plugin list` → każda aktywna wtyczka cache/maintenance (`litespeed-cache`, `cache-enabler`, `wp-super-cache`, `w3-total-cache`, `maintenance`, `coming-soon`);
+   - wyczyść cache WŁAŚCIWEJ wtyczki (`wp litespeed-purge all` / `wp cache-enabler clear` / `rm -rf wp-content/cache/*`) — samo `wp cache flush` to tylko object cache i NIE wystarcza;
+   - maintenance/coming-soon → deaktywuj;
+   - weryfikacja z zewnątrz: `curl -s https://DOMENA/ | grep <znacznik-nowej-wersji>`.
 
 ---
 
@@ -172,6 +193,9 @@ Realne zdjęcia/filmy per sekcja (zgody na wizerunek, jeśli medyczne), NAP (tel
 [ ] Tokeny wyciągnięte z tailwind.config w code.html (nie z DESIGN.md), fonty mają latin-ext
 [ ] Ikony: Material Symbols (z FILL 1 gdzie trzeba) albo identyczne SVG
 [ ] Decyzja co 1:1 (DOMYŚLNIE WSZYSTKO), odstępstwa tylko za zgodą — bramka designu
+[ ] Wariant A (domyślny): surowy HTML ze Stitcha wklejony 1:1, bez tłumaczenia na własne klasy
+[ ] Zero placeholderów (formularz odwzorowany, nie „zainstaluj wtyczkę X")
+[ ] Przed produkcją: Tailwind CDN → skompilowany assets/css/tailwind.css (albo odnotowany kompromis)
 [ ] Sekcje: pasujące → biblioteka studio-base; niepasujące → szablony w motywie-dziecku
 [ ] Motyw-dziecko: tokens.css nadpisuje :root bazy (paleta + fonty + kanały --c-*-rgb)
 [ ] Treść w SCF/ACF, render przez get_field(), obrazy po ID
@@ -181,6 +205,9 @@ Realne zdjęcia/filmy per sekcja (zgody na wizerunek, jeśli medyczne), NAP (tel
 [ ] Weryfikacja na Playground/lokalnie: render OK, 0 błędów PHP
 [ ] AUDYT 1:1: każda sekcja/tekst obecne (grep per fraza), zrzut vs screen.png,
     0 linków do lh3.googleusercontent w HTML-u, brak śladów poprzedniego projektu
+[ ] Po deployu: cache aktywnej wtyczki wyczyszczony (NIE tylko wp cache flush),
+    maintenance deaktywowane, curl z zewnątrz widzi znacznik nowej wersji
+[ ] WYNIKI audytu wklejone użytkownikowi (nie sama deklaracja „gotowe")
 [ ] Porównanie ze źródłem (zrzut od klienta, bez przejmowania ekranu)
 [ ] Wdrożenie wg 09-wdrozenie-produkcja-lh-ssh.md
 [ ] Placeholdery podmienione przed live
