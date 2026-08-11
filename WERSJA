@@ -1,7 +1,12 @@
-2026.08.11.2
+2026.08.11.3
 
 # Historia wersji systemu
 # (najnowsza na górze; pierwsza linia pliku to numer aktualnej wersji)
+
+## 2026.08.11.3
+- Gotowy prompt do aktualizacji w `START-TUTAJ.md` (sekcja 0e) — kopiujesz, wklejasz agentowi, gotowe.
+- Narzędzie `szablony-startowe/narzedzia/pobierz-fonty.py` — pobiera fonty z polskimi znakami
+  do wgrania lokalnie (wymóg RODO przed startem strony).
 
 ## 2026.08.11.2
 - Nowa metoda domyślna przenoszenia projektu ze Stitcha: agent wkleja surowy kod 1:1

@@ -66,7 +66,28 @@ Twoja kopia projektu jest **od tej chwili osobna** — działa u Ciebie i nikt j
 
 Dlatego w projekcie jest przycisk „pobierz najnowszą wersję". Gdy dostaniesz wiadomość, że jest nowa wersja, napisz do agenta:
 
-> **„Zaktualizuj system do najnowszej wersji — uruchom aktualizuj.sh."**
+**Skopiuj i wklej agentowi dokładnie to:**
+
+```
+Zaktualizuj mój projekt do najnowszej wersji systemu.
+
+1. Sprawdź, czy w głównym folderze projektu jest plik aktualizuj.sh.
+   Jeśli GO NIE MA, najpierw go pobierz:
+   curl -fsSL https://raw.githubusercontent.com/adrian-zielinski/projektowanie-stron-www/main/aktualizuj.sh -o aktualizuj.sh
+2. Uruchom: bash aktualizuj.sh
+   (Jeśli nie możesz uruchomić basha — np. czysty Windows — zrób to samo ręcznie:
+   pobierz https://github.com/adrian-zielinski/projektowanie-stron-www/archive/refs/heads/main.tar.gz,
+   rozpakuj i skopiuj do mojego projektu, nadpisując, TYLKO te ścieżki:
+   AGENTS.md, GEMINI.md, CLAUDE.md, README.md, START-TUTAJ.md, WERSJA, aktualizuj.sh,
+   wiedza/, szablony-startowe/, .claude/skills/, briefy/SZABLON-BRIEFU.md, briefy/przyklad-wypelniony.md.
+   Niczego nie kasuj.)
+3. Przeczytaj plik WERSJA i wypisz mi prostym językiem, co nowego dostałem.
+4. Przeczytaj od nowa AGENTS.md i od tej chwili trzymaj się go — reguły mogły się zmienić.
+5. Zapisz zmiany na moim GitHubie (commit + push) z opisem "Aktualizacja systemu".
+
+WAŻNE: nie zmieniaj i nie kasuj niczego w folderze Klienci/, moich briefów
+ani motywów, które już zrobiłem. Aktualizacja dotyczy wyłącznie plików systemowych.
+```
 
 Co się stanie: agent pobierze najnowsze instrukcje, wiedzę i gotowe szablony, a **Twojej pracy nie ruszy** — strony klientów, briefy i motywy, które zrobiłeś, zostają nietknięte. Na wszelki wypadek zrobi też kopię poprzednich plików systemowych (folder `_kopia-przed-aktualizacja`).
 

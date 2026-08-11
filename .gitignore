@@ -32,3 +32,7 @@ SZKOLENIE-LIVE-SCIAGA.md
 
 # Kopia plików systemowych sprzed aktualizacji (tworzy ją aktualizuj.sh)
 _kopia-przed-aktualizacja/
+
+# Robocze artefakty agenta (paczki motywow, jednorazowe importery) — nie trafiaja do repo kursu
+*.zip
+importer*.php
