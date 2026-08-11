@@ -2,6 +2,10 @@
 
 System Google Antigravity (Gemini) do projektowania i wdrażania wysoko konwertujących stron na WordPress jako **custom classic theme** (zero Elementora), od briefu do publikacji. Dla web-designerów robiących strony swoim klientom.
 
+## Automat na starcie każdej rozmowy
+
+Uruchom `bash aktualizuj.sh --sprawdz`. Gdy wypisze „JEST NOWSZA WERSJA" — powiedz użytkownikowi jednym zdaniem i zapytaj, czy zaktualizować; po „tak" odpal `bash aktualizuj.sh`, przeczytaj `WERSJA`, streść nowości i od razu stosuj nowe reguły. Brak pliku `aktualizuj.sh` → pobierz z `https://raw.githubusercontent.com/adrian-zielinski/projektowanie-stron-www/main/aktualizuj.sh`. Brak internetu → pracuj normalnie, sprawdzenie nigdy nie blokuje. Raz na rozmowę, nie po każdym poleceniu.
+
 ## Złota zasada
 
 Pracujesz w pętli: **brief → architektura treści → design (akceptacja) → budowa motywu WordPress → SEO → QA → wdrożenie.** Najpierw odpala się dyrygent, skill `strona-od-briefu`, i prowadzi przez cały proces.

@@ -5,7 +5,9 @@
 # NIGDY nie kasuje Twojej pracy: folderu Klienci/, Twoich briefów, Twoich
 # motywów i wszystkiego, czego nie ma w oryginale.
 #
-# Uruchom:  bash aktualizuj.sh
+# Uruchom:  bash aktualizuj.sh            — aktualizuje system
+#           bash aktualizuj.sh --sprawdz  — TYLKO sprawdza, czy jest nowsza wersja
+#                                           (nic nie zmienia; kod wyjścia 10 = jest nowsza)
 #
 # Cała logika siedzi w funkcji main() — dzięki temu skrypt może bezpiecznie
 # podmienić sam siebie w trakcie działania (bash wczytuje całą funkcję naraz).
@@ -13,6 +15,7 @@
 set -euo pipefail
 
 ZRODLO="https://github.com/adrian-zielinski/projektowanie-stron-www/archive/refs/heads/main.tar.gz"
+ZRODLO_WERSJA="https://raw.githubusercontent.com/adrian-zielinski/projektowanie-stron-www/main/WERSJA"
 
 TMP=""
 trap '[ -n "$TMP" ] && rm -rf "$TMP"' EXIT
@@ -32,6 +35,29 @@ szablony-startowe
 briefy/SZABLON-BRIEFU.md
 briefy/przyklad-wypelniony.md
 "
+
+# Szybkie sprawdzenie wersji — pobiera jeden mały plik, niczego nie zmienia.
+# Kody wyjścia: 0 = masz najnowszą, 10 = jest nowsza, 1 = brak połączenia.
+sprawdz() {
+	cd "$(dirname "$0")"
+	local stara="brak"
+	[ -f WERSJA ] && stara="$(head -1 WERSJA)"
+
+	local nowa
+	if ! nowa="$(curl -fsSL --max-time 10 "$ZRODLO_WERSJA" 2>/dev/null | head -1)"; then
+		echo "? Nie udało się sprawdzić wersji (brak internetu?). Pracuj dalej normalnie."
+		exit 1
+	fi
+
+	if [ "$stara" = "$nowa" ]; then
+		echo "✓ System aktualny (wersja $nowa)."
+		exit 0
+	fi
+
+	echo "! JEST NOWSZA WERSJA SYSTEMU: $nowa (masz: $stara)"
+	echo "  Aby zaktualizować, uruchom: bash aktualizuj.sh"
+	exit 10
+}
 
 main() {
 	cd "$(dirname "$0")"
@@ -93,5 +119,9 @@ main() {
 	echo
 	echo "  Co nowego — zajrzyj do: WERSJA"
 }
+
+if [ "${1:-}" = "--sprawdz" ]; then
+	sprawdz
+fi
 
 main "$@"

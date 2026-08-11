@@ -64,7 +64,9 @@ To Twoja kopia zapasowa. Komputer może paść — projekt na GitHubie przeżyje
 
 Twoja kopia projektu jest **od tej chwili osobna** — działa u Ciebie i nikt jej nie rusza. To dobrze (nikt Ci nic nie zepsuje), ale ma jeden skutek: **gdy prowadzący ulepszy system, Twoja kopia sama się nie zaktualizuje.**
 
-Dlatego w projekcie jest przycisk „pobierz najnowszą wersję". Gdy dostaniesz wiadomość, że jest nowa wersja, napisz do agenta:
+**Dobra wiadomość: agent pilnuje tego za Ciebie.** Na początku każdej rozmowy sam sprawdza, czy prowadzący wydał nowszą wersję. Jeśli tak — powie Ci o tym i zapyta, czy zaktualizować. Odpisujesz „tak" i po sprawie.
+
+Ręcznie robisz to tylko wtedy, gdy chcesz sam sprawdzić albo agent o tym nie wspomniał (np. masz starszą kopię projektu). Wtedy wklej mu to:
 
 **Skopiuj i wklej agentowi dokładnie to:**
 

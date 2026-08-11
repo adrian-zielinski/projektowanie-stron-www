@@ -1,7 +1,12 @@
-2026.08.11.3
+2026.08.11.4
 
 # Historia wersji systemu
 # (najnowsza na górze; pierwsza linia pliku to numer aktualnej wersji)
+
+## 2026.08.11.4
+- Automatyczne wykrywanie nowych wersji: agent na starcie każdej rozmowy sam sprawdza,
+  czy prowadzący wydał nowszą wersję, i pyta, czy zaktualizować. Ty nic nie musisz pamiętać.
+- Nowa komenda `bash aktualizuj.sh --sprawdz` — sprawdza wersję bez zmieniania czegokolwiek.
 
 ## 2026.08.11.3
 - Gotowy prompt do aktualizacji w `START-TUTAJ.md` (sekcja 0e) — kopiujesz, wklejasz agentowi, gotowe.

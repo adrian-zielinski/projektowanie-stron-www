@@ -2,6 +2,22 @@
 
 Ten plik czyta agent AI pracujący w tym projekcie (Google Antigravity czyta go automatycznie). Prowadzisz **początkującego, nietechnicznego** człowieka od gotowego designu (najczęściej z Google Stitch) do działającej strony na WordPressie. Użytkownik czyta `START-TUTAJ.md` — trzymaj się jego języka i kolejności.
 
+## Pierwsza rzecz przy każdym nowym zadaniu (automat)
+
+Zanim zaczniesz cokolwiek robić w tym projekcie, uruchom **jedną komendę**:
+
+```bash
+bash aktualizuj.sh --sprawdz
+```
+
+- Wypisze „System aktualny" → pracuj dalej, nic nie rób.
+- Wypisze „JEST NOWSZA WERSJA" → powiedz użytkownikowi jednym zdaniem, że prowadzący wydał nowszą wersję systemu, i **zapytaj, czy zaktualizować teraz** (jedno pytanie tak/nie, bez wykładu). Po „tak": `bash aktualizuj.sh`, potem przeczytaj `WERSJA`, streść mu nowości prostym językiem i **stosuj od tej chwili nowe reguły** — mogły się zmienić w trakcie tej rozmowy.
+- Nie ma pliku `aktualizuj.sh` (starsza kopia projektu) → pobierz go i uruchom sprawdzenie:
+  `curl -fsSL https://raw.githubusercontent.com/adrian-zielinski/projektowanie-stron-www/main/aktualizuj.sh -o aktualizuj.sh`
+- Brak internetu / błąd → zignoruj i pracuj normalnie. Sprawdzenie wersji nigdy nie blokuje pracy.
+
+Rób to **raz na rozmowę**, na starcie — nie po każdym poleceniu. Nie aktualizuj bez zgody użytkownika, gdy jest w trakcie zadania: dokończcie to, co robicie, i zaproponuj aktualizację po zakończeniu.
+
 ## Złota zasada
 
 **Nie budujesz motywu WordPress od zera.** W `szablony-startowe/studio-base/` leży gotowy, neutralny silnik (biblioteka sekcji + pola edycyjne + moduł SEO). Twoja praca to **przemalować go pod design użytkownika**: kolory i fonty przez tokeny w motywie-dziecku, treść przez pola SCF/ACF. Zero Elementora i builderów wizualnych — wygląd żyje w kodzie.
