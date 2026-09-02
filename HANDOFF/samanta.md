@@ -2,7 +2,7 @@
 kind: handoff-topic
 topic: samanta
 status: in-progress
-updated: 2026-08-23
+updated: 2026-09-02
 ---
 
 # Holiestetyka — strona Samanty Zioły na WordPressie
@@ -10,13 +10,14 @@ updated: 2026-08-23
 > Zakres: motyw-dziecko, treści, media, logo, produkcja na LH. NIE obejmuje: Logistiq / Stitch B2B (`Klienci/STRONKA NOWA`).
 
 ## Aktualny stan
-- ✅ Produkcja [holiestetyka.pl](https://holiestetyka.pl) (motyw `holiestetyka` + baza `studio-base`). Copy z maili/WA (29.06–10.07) live. Logo **HOLIMEDICA** w nagłówku, domena i copy = Holiestetyka.
-- ✅ 22–23.08 na produkcji: zdjęcia wróciły w nagłówki podstron (overlay, biały H1); H1 mobile ~28 px (było ~20); filmiki; grafiki między tekstami; `<strong>` w leadach laser/INDIBA zdjęte.
-- ✅ Filmy live: główna `holi/home.mp4` (specjalistka, 22 s), dno, fizjo (rozstęp), onkologia (talking-head — stare `oknologia.mp4` cesarskie zdjęte), technologie (rolka INDIBA), laser (stock zabiegu na twarzy, Pexels), plus stare rolki blizny/operacje/INDIBA.
-- ✅ Grafiki: feat/galerie na proces, dno, kosmetologia, fizjo, operacje, onko, INDIBA, tech, kontakt, menu. Stock WP ID **326–330** (twarz-zabieg, serum, maska, USG, ciąża). Kontakt header = **320** (twarz Samanty, nie kark 308).
-- ⛔ **Nie** każda zakładka ma film powitalny ze specjalistą. Brak talking-head: kosmetologia, proces, kontakt, menu. Albumy Google Photos z 30.04 puste; WeTransfer wygasł.
-- ⛔ Booksy, telefon, godziny. CTA → `href="#"`. Opinie generyczne. Fonty z Google CDN. Decyzja marki Holiestetyka vs Holimedica wciąż otwarta.
-- ⛔ Lokalny `Downloads/Samanta/holiestetyka-theme/` z **24.06** — nie wgrywać (prod nowsza).
+- ✅ Produkcja [holiestetyka.pl](https://holiestetyka.pl). Motyw-dziecko na serwerze (nie rsyncować `holiestetyka-theme/` z 24.06).
+- ✅ **2.09** wdrożona runda WA 26.08 (screeny + 7 filmów + 3 głosówki z `Downloads/samanta 2`). Backup ACF: `~/holi-acf-backup-samanta-20260902-064421`.
+- ✅ Kadry: hard-crop `sb_hero`/`sb_card` wyłączony w szablonach dziecka (pełny plik). Logo HOLIMEDICA ~72–96 px. H1 desktop `clamp(1.65–2.55rem)`. Ścieżki na home w kolumnie. Galerie 2 kolumny, bez ucięcia przed/po.
+- ✅ Hero/feat: brzuch-przed/po i Canva „CARE zapisz się” i cartoon plemniki zdjęte z nagłówków. Gabinet = **307**. Portret Samanty = **308**. Maszyna INDIBA = **331**. USG/Dermapen/biofeedback = **332–334**.
+- ✅ Proces: 3 karty jej copy. Dno: kafelki Kobiety/Mężczyźni + rolka rozstępu tu (nie na fizjo). Laser: dermatozy w tytule i galerii. Kosmetologia: filar bez „leczenia dermatoz” (odesłanie na laser).
+- ✅ Reel: przycisk „Włącz dźwięk” (autoplay nadal muted).
+- ⛔ Brak talking-head: kosmetologia, proces, kontakt, menu. Booksy/telefon/godziny — CTA `href="#"`. Opinie generyczne. Marka Holiestetyka vs Holimedica otwarta.
+- ⛔ `Downloads/Samanta/holiestetyka-theme/` z 24.06 — nie wgrywać.
 
 ## Kluczowe decyzje i ustalenia
 - Źródło prawdy treści: maile + WhatsApp (eksport „Zioła 2” pełniejszy) + `uwagi-samanty-2026-07.md`.
@@ -29,7 +30,7 @@ updated: 2026-08-23
 - `njnj/IMG_4484.jpeg` — hasło w kadrze, nie używać.
 
 ## Następny krok
-Czekać na jej filmiki talking-head na kosmetologię / proces / kontakt (Drive lub WeTransfer, nie Photos — albumy z 30.04 puste). Nie pisać jej, że „każda zakładka ma powitanie specjalisty”. Potem: Booksy + telefon + godziny (CTA martwe). Marka Holiestetyka vs Holimedica — wciąż decyzja Adriana.
+Dać Samancie link do przeglądu (nie pisać „wszystko ogarnięte” / nie obiecywać talking-head na każdej zakładce). Potem z niej: brakujące filmiki kosmetologia/proces/kontakt, prawdziwe opinie Booksy, jej zdjęcia sprzętu jeśli 332–334 nie przejdą. Równolegle: Booksy + telefon + godziny (CTA martwe). Marka — decyzja Adriana.
 
 ## Czego NIE robić
 - Nie rsync lokalnego `Downloads/Samanta/holiestetyka-theme/` na prod.
@@ -41,15 +42,17 @@ Czekać na jej filmiki talking-head na kosmetologię / proces / kontakt (Drive l
 - Nie committować materiałów klienta (gitignor `Klienci/`).
 
 ## Artefakty
-- Live: https://holiestetyka.pl — dziecko tylko na serwerze (`themes/holiestetyka/assets/css/{tokens,overrides}.css`; filmy `wp-content/uploads/holi/*.mp4`)
-- `/Users/adrianmacbook2/Downloads/Samanta/` — folder roboczy (theme 24.06 stale)
-- `uwagi-samanty-2026-07.md`, `materialy-mapa.md`, `wdrozenie/WDROZENIE.md` w tym folderze
+- Live: https://holiestetyka.pl — dziecko na serwerze: `themes/holiestetyka/{functions.php,assets/css/overrides.css,assets/js/reel-sound.js,template-parts/content/content-*.php}`; filmy `uploads/holi/*.mp4`
+- `/Users/adrianmacbook2/Downloads/Samanta/` — folder roboczy (theme 24.06 stale); `theme-prod/` = kopia dziecka z 2.09
+- `uwagi-samanty-2026-07.md`, `materialy-mapa.md`, `wdrozenie/WDROZENIE.md`
 - `/Users/adrianmacbook2/Downloads/WhatsApp Chat - Samanta Zioła 2/` — pełniejszy czat
-- Drive reels (mat/vid) nadal publiczne jako `drive.google.com/uc?export=download&id=…` z maila Technologie; Google Photos 30.04 puste
-- ACF backup serwer: `~/holi-acf-backup-video-20260823-133225`, `~/holi-acf-backup-fill-20260823-144832`
-- Sesja Claude 14.07: `721b9915-5e22-4886-b384-43d01ff7243a`
+- `/Users/adrianmacbook2/Downloads/samanta 2/` — runda 26.08 (screeny, 7 filmów, 3 głosówki)
+- Transkrypcje: `inbox/samanta-transkrypcje/`
+- ACF backup: `~/holi-acf-backup-samanta-20260902-064421` (plus starsze video/fill z 23.08)
+- Media 2.09: 331 maszyna INDIBA, 332 USG, 333 Dermapen, 334 biofeedback
 
 ## Dziennik sesji
+- 2026-09-02 — WA 26.08: screeny + 7 filmów laptopa + 3 głosówki. Zdjęto ucięte/obrzydliwe kadry z hero, logo większe, H1 mniejsze, dźwięk na rolkach, dno K/M, rozstęp z fizjo na dno, dermatozy na laser, sprzęt USG/Dermapen/biofeedback na technologiach. Nie pisać jej „gotowe na 100%”.
 - 2026-08-23 — WA 22.08 (filmy powitalne + 3 wzory + czcionki). Wdrożono nagłówki ze zdjęciem, H1 mobile, talking-head na głównej/dnie/fizjo/onko, stock laser, grafiki feat. Nie każda zakładka ma specjalistę. Nie pisać jej „wszystko ogarnięte”.
 - 2026-08-20 — `/pickup samanta`: odtworzono HANDOFF po skasowaniu 11.08. CTA puste, decyzja marki otwarta.
 - 2026-07-14 — produkcja: copy WA+maile, media, logo Holimedica.
