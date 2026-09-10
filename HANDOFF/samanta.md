@@ -11,10 +11,11 @@ updated: 2026-09-10
 
 ## Aktualny stan
 - ✅ Produkcja [holiestetyka.pl](https://holiestetyka.pl). Motyw-dziecko na serwerze (nie rsyncować `holiestetyka-theme/` z 24.06). Kopia aktualnego dziecka: `Downloads/Samanta/theme-prod/` (sync 10.09).
-- ✅ **10.09** runda „nadal są błędy”: nagłówki podstron zaczynają się pod stałym menu (desktop H1 wjeżdżał pod logo/breadcrumb), H1 mniejsze; zdjęcia feat/author/combined w proporcji pliku (`--ar` z PHP, `holi_img_ar()`), plakietka POD zdjęciem; galerie 3–4 kolumny desktop / 2 mobile, kafle 4:5 contain; reel w proporcji filmu (slajdy Canva 4:5 nieobcinane), przycisk dźwięku tylko gdy audio; **CTA działają** (40× `#` → Booksy/tel), nav „Umów wizytę” + stopka z telefonem i godzinami; formularz kontaktu (wycinany przez `wp_kses_post`) zastąpiony kartą Booksy/tel/mail; opinie = 6 realnych z ZnanyLekarz + gwiazdki i źródło; 3 karty „Co nas wyróżnia” = copy Samanty; onkologia hero 130 i galeria bez zdjęcia piersi; blizny galeria = tylko blizny; kosmetologia hero 323 (ciemny, czytelny H1). Backup: `~/holi-acf-backup-samanta-20260910-132237` na serwerze (ACF JSON + `theme-before/`).
+- ✅ **10.09 (runda 2, 13:50–14:10)** po 4 nowych uwagach: **308/320 = PRACOWNICA z filmu, nie Samanta** — zdjęte ze wszystkich sekcji „Mgr Samanta Zioła” (home author, proces, fizjo, kosmetologia, kontakt hero+feat); zamiast tego **335** = kadr „terapia manualna blizny” (dłonie, bez twarzy) wycięty z makiety jej graficzki (`Grafiki od graficzki/…11.41.39.jpeg`). 307 (gabinet, też z makiety graficzki — AI) max 1× na stronę: home hero, blizny hero, proces feat, dno feat, fizjo hero, kontakt hero; reszta → 332 USG / 333 Dermapen / 334 biofeedback / 321 / 327. Blizny combined „Terapie łączone” = 335 (1:1 z jej makietą). Pacjentka onkologiczna (233) tylko w onkologii; modelowanie sylwetki (239/240) poza operacjami → 240 w INDIBA. Galerie: kafle ~200 px (`minmax(190px)`, max-width 1120). Home hero: treść od góry pod menu (H1 chował się pod logo), ścieżki w 2 równych kolumnach na desktopie. Backup: `~/holi-acf-backup-samanta-20260910-132237/r2/`.
+- ✅ **10.09 (runda 1)** „nadal są błędy”: nagłówki podstron zaczynają się pod stałym menu (desktop H1 wjeżdżał pod logo/breadcrumb), H1 mniejsze; zdjęcia feat/author/combined w proporcji pliku (`--ar` z PHP, `holi_img_ar()`), plakietka POD zdjęciem; galerie 3–4 kolumny desktop / 2 mobile, kafle 4:5 contain; reel w proporcji filmu (slajdy Canva 4:5 nieobcinane), przycisk dźwięku tylko gdy audio; **CTA działają** (40× `#` → Booksy/tel), nav „Umów wizytę” + stopka z telefonem i godzinami; formularz kontaktu (wycinany przez `wp_kses_post`) zastąpiony kartą Booksy/tel/mail; opinie = 6 realnych z ZnanyLekarz + gwiazdki i źródło; 3 karty „Co nas wyróżnia” = copy Samanty; onkologia hero 130 i galeria bez zdjęcia piersi; blizny galeria = tylko blizny; kosmetologia hero 323 (ciemny, czytelny H1). Backup: `~/holi-acf-backup-samanta-20260910-132237` na serwerze (ACF JSON + `theme-before/`).
 - ✅ 2.09 runda WA 26.08 (screeny + 7 filmów + 3 głosówki z `Downloads/samanta 2`); lokalne backupy ACF z 2.09/23.08 już nie istnieją.
 - ✅ Kadry: hard-crop `sb_hero`/`sb_card` wyłączony w szablonach dziecka (pełny plik). Logo HOLIMEDICA ~72–96 px. Ścieżki na home w kolumnie.
-- ✅ Hero/feat: brzuch-przed/po i Canva „CARE zapisz się” i cartoon plemniki zdjęte z nagłówków. Gabinet = **307**. Portret Samanty = **308**. Maszyna INDIBA = **331**. USG/Dermapen/biofeedback = **332–334**.
+- ✅ Hero/feat: brzuch-przed/po i Canva „CARE zapisz się” i cartoon plemniki zdjęte z nagłówków. Gabinet = **307** (AI z makiety graficzki). **308/320 = pracownica, NIE Samanta — nie używać jako jej portret.** Terapia manualna (dłonie) = **335**. Maszyna INDIBA = **331**. USG/Dermapen/biofeedback = **332–334**.
 - ✅ Proces: 3 karty jej copy. Dno: kafelki Kobiety/Mężczyźni + rolka rozstępu tu (nie na fizjo). Laser: dermatozy w tytule i galerii. Kosmetologia: filar bez „leczenia dermatoz” (odesłanie na laser).
 - ✅ Reel: przycisk „Włącz dźwięk” tylko na filmach z głosem (home, onkologia, dno, fizjo); autoplay nadal muted.
 - ⛔ Brak talking-head: kosmetologia, proces, kontakt, menu; blizny/operacje/technologie mają tylko nieme slajdy Canva. Marka Holiestetyka vs Holimedica otwarta. Baner cookie (Cookie Law Info) zasłania pół ekranu na mobile — Samanta ogląda stronę przez niego.
@@ -36,7 +37,7 @@ updated: 2026-09-10
 - Zrzuty full-page: Playwright (python) z `wait_until="load"` + blokada `*.mp4`; NIE używać `?s=` jako cache-bustera (to wyszukiwarka WP). Playwright zawyża `svh` — nakładanie menu na H1 w full-page to artefakt, sprawdzać w realnym viewporcie.
 
 ## Następny krok
-Wysłać Samancie link z prośbą o sprawdzenie na telefonie po odświeżeniu i potwierdzenie telefonu/godzin (nie pisać „wszystko ogarnięte”). Potem od niej: brakujące filmiki (kosmetologia/proces/kontakt, talking-head o bliznach zamiast slajdów), lepszy portret (308 ma 290×700 px), decyzja o banerze cookie (zamienić na wąski pasek na dole). Marka — decyzja Adriana.
+Wysłać Samancie link z prośbą o sprawdzenie na telefonie po odświeżeniu i potwierdzenie telefonu/godzin (nie pisać „wszystko ogarnięte”). **Poprosić ją o własne zdjęcie (portret) i 2–3 zdjęcia gabinetu** — bez tego sekcje „Mgr Samanta Zioła” mają zdjęcie dłoni/terapii, a hero powtarzają jedną grafikę AI. Potem: brakujące filmiki (kosmetologia/proces/kontakt, talking-head o bliznach zamiast slajdów), decyzja o banerze cookie (zamienić na wąski pasek na dole). Marka — decyzja Adriana.
 
 ## Czego NIE robić
 - Nie rsync lokalnego `Downloads/Samanta/holiestetyka-theme/` na prod.
@@ -46,7 +47,9 @@ Wysłać Samancie link z prośbą o sprawdzenie na telefonie po odświeżeniu i 
 - Nie wracać do Elementora / Lovable.
 - Nie kasować na serwerze bez kopii i zgody. Aktualny backup na serwerze: `~/holi-acf-backup-samanta-20260910-132237`. Cofnięcie: `cp -r theme-before/* wp-content/themes/holiestetyka/` + `wp post meta update` z `page-N.json` / `wp option update` z `options.json`.
 - Nie wracać do 2-kolumnowej galerii ani plakietki NA zdjęciu — Samanta: „okropnie duże”, „nie widać zdjęcia”.
-- Nie wstawiać brzuchów z modelowania do sekcji „blizny” („Modelowanie sylwetki to jest”).
+- Nie wstawiać brzuchów z modelowania do sekcji „blizny” ani „operacje” („Modelowanie sylwetki to jest”); 233 (klatka) = pacjentka onkologiczna → tylko onkologia.
+- Nie podpisywać 308/320 jako Samanty („Ponownie to samo zdjęcie mojej pracownicy!!!”). Nie dawać tego samego zdjęcia dwa razy na jednej podstronie („To samo zdjęcie????”).
+- Nie centrować treści hero w pionie — przy 7 ścieżkach wypycha H1 pod logo.
 - Nie committować materiałów klienta (gitignor `Klienci/`).
 
 ## Artefakty
@@ -57,9 +60,11 @@ Wysłać Samancie link z prośbą o sprawdzenie na telefonie po odświeżeniu i 
 - `/Users/adrianmacbook2/Downloads/samanta 2/` — runda 26.08 (screeny, 7 filmów, 3 głosówki)
 - Transkrypcje: `inbox/samanta-transkrypcje/` (folder już nie istnieje — głosówki 26.08 leżą w `Downloads/samanta 2/*.ogg`)
 - ACF backup: serwer `~/holi-acf-backup-samanta-20260910-132237` (page-*.json, options*.json, theme-before/); lokalne z 2.09/23.08 skasowane
-- Media 2.09: 331 maszyna INDIBA, 332 USG, 333 Dermapen, 334 biofeedback
+- Media 2.09: 331 maszyna INDIBA, 332 USG, 333 Dermapen, 334 biofeedback; 10.09: 335 terapia manualna blizny (kadr z makiety graficzki, 664×956)
+- Makiety graficzki (źródło 307 i 335): `Downloads/Samanta/Grafiki od graficzki/WhatsApp Image 2026-06-12 at 11.41.39.jpeg` (Terapie łączone) i `…11.41.45.jpeg` (Co nas wyróżnia)
 
 ## Dziennik sesji
+- 2026-09-10 (2) — 4 uwagi WA 11:49–11:52: pracownica zamiast Samanty, powtórki 307, onkologiczna w bliznach, modelowanie w operacjach, „mega duże” zdjęcia. Podmiany zdjęć na 9 stronach, nowy kadr 335, galerie ~200 px, hero home pod menu. Brak zdjęcia Samanty — trzeba o nie poprosić.
 - 2026-09-10 — „Nadal są błędy” (WA 26.08 + 2.09 + 10.09): nagłówki pod menu, mniejsze H1, zdjęcia bez cropu z plakietką pod spodem, galerie 3–4 kol., reel w proporcji, 40 CTA → Booksy/tel, kontakt z telefonem/godzinami, realne opinie ZnanyLekarz, copy Samanty w wyróżnikach, galerie/hero bez złych kadrów, kosmetologia hero ciemne. Formularz kontaktu okazał się wycinany przez kses → karta kontaktu.
 - 2026-09-02 — WA 26.08: screeny + 7 filmów laptopa + 3 głosówki. Zdjęto ucięte/obrzydliwe kadry z hero, logo większe, H1 mniejsze, dźwięk na rolkach, dno K/M, rozstęp z fizjo na dno, dermatozy na laser, sprzęt USG/Dermapen/biofeedback na technologiach. Nie pisać jej „gotowe na 100%”.
 - 2026-08-23 — WA 22.08 (filmy powitalne + 3 wzory + czcionki). Wdrożono nagłówki ze zdjęciem, H1 mobile, talking-head na głównej/dnie/fizjo/onko, stock laser, grafiki feat. Nie każda zakładka ma specjalistę. Nie pisać jej „wszystko ogarnięte”.
