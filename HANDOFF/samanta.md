@@ -11,6 +11,14 @@ updated: 2026-09-10
 
 ## Aktualny stan
 - ✅ Produkcja [holiestetyka.pl](https://holiestetyka.pl). Motyw-dziecko na serwerze (nie rsyncować `holiestetyka-theme/` z 24.06). Kopia aktualnego dziecka: `Downloads/Samanta/theme-prod/` (sync 10.09).
+- ✅ **10.09 (runda 5, wieczór) — PANEL DLA SAMANTY w WP Admin**. Po jej „Źle wszystko" i ustaleniu Adriana, że sama powstawia zdjęcia. Konto **`samanta`** (ID 2), rola **`holi_owner`** = redaktor + `upload_files` + `edit_theme_options`, bez `manage_options`, wtyczek, motywów, użytkowników i edytora plików.
+  **Co widzi:** Kokpit z kafelkami 13 stron („Edytuj" / „Zobacz") i trzema krokami · Strony · Media · „Ustawienia strony" (telefon, godziny, Booksy) · „📖 Jak edytować" (11 rozdziałów po polsku) · Profil. Reszta menu ukryta, wejście na `themes.php`/`acf-field-group`/`plugins.php` itd. odbite.
+  **Sekcje po ludzku:** każdy zwinięty pasek ma miniaturę zdjęcia, ikonę, przyjazną nazwę typu i nagłówek („🖼 Nagłówek strony · Blizny — kompleksowa terapia"). Etykiety pól po polsku („Mały napis nad nagłówkiem" zamiast „Eyebrow"). Pola techniczne (okruszki, kotwica) schowane przed nie-adminem klasą CSS, nie `return false` — twarde ukrycie kasowało wartość przy zapisie.
+  **Trzy nowe sekcje** do wstawiania między teksty: **Zdjęcie** (wąskie/szerokie/pełna szerokość), **Zdjęcia obok siebie** (2–4 w rzędzie, 2 kolumny na telefonie), **Film** (sam film, korzysta z `reel-sound.js`). Klucze stałe: `layout_holi_image|images|video`, pola `field_holi_*`. W menu „Dodaj sekcję" stoją na górze.
+  **Wyłączony Gutenberg dla stron** — to było krytyczne: w edytorze blokowym sekcje ACF lądowały w zwiniętym panelu „Metaboksy" na dole, Samanta zobaczyłaby pusty ekran z „Witaj w edytorze". Teraz klasyczny edytor, sekcje są jedyną rzeczą na ekranie; ukryte pole treści, adres strony (slug), atrybuty i opcje publikacji.
+  **Infrastruktura:** Cache Enabler czyści cache po zapisie strony (było wyłączone — Samanta nie zobaczyłaby swoich zmian!) · `DISALLOW_FILE_EDIT` · **strona przeniesiona na HTTPS** (`siteurl`/`home`, `FORCE_SSL_ADMIN`, przekierowanie 301 w `.htaccess`, `wp search-replace` 26 podmian) — wcześniej logowanie szłoby po http jawnym tekstem · „Przykładowa strona" do kosza.
+  **Backup:** `~/holi-acf-backup-samanta-20260910-132237/r6-panel/` (motyw sprzed zmian, meta 13 stron, `wp-config` przed i po, `.htaccess`, zrzut bazy `db-przed-https.sql`).
+  **Test jako Samanta** (ciasteczko z wp-cli, 390×844 i 1440×950): menu ograniczone, 13 kafelków, 15 sekcji z 36 miniaturami, przycisk „Dodaj sekcję", pomoc 11 rozdziałów, blokady działają, zero błędów JS. Render nowych sekcji sprawdzony na stronie roboczej (potem skasowanej): zero przewijania poziomego, zdjęcia w pełnym kadrze, siatka 2/3 kolumny, film gra z proporcją z pliku.
 - ✅ **10.09 (runda 4, 14:45–15:15) — audyt „czy coś nachodzi / czy widać całe zdjęcia"**. Sprawdzone programowo na 390×844 i 375×667, 26 przebiegów: **nachodzenie elementów** (parami, z `elementFromPoint` żeby odsiać ukryte), **tekst przycięty** przez `overflow:hidden`, **czcionki < 11,5 px**, **ile procent kadru zdjęcia widać** przy `object-fit:cover`, **stan filmów** (proporcja, odtwarzanie, `readyState`, przycisk dźwięku).
   Znalezione i naprawione: (1) na onkologii podpis galerii nachodził na notkę o zgodzie pacjentów → `margin-top` na notce; (2) hero na home pokazywał **29% kadru** (poziome 3:2 w pionowym kontenerze 404×913) i wyglądał jak brązowa plama → nowe zdjęcie 347 w proporcji **4:5**, widać 55% na telefonie i 50% na desktopie; (3) laseroterapia i operacje dostały kadry 4:5 (348, 349); (4) onkologia (plik 1179×771, nie da się poprawić proporcji) → `body.page-id-11 .subhero__img{object-position:25% 30%}`, dzięki czemu w wąskim kadrze widać całą sylwetkę; (5) czcionki 11 px → 12 px na telefonie (ścieżki hero, `.filar__tag`, `.tag`, podpisy galerii, `.eyebrow`).
   **Filmy: wszystkie 9 bez zarzutu** — grają, `readyState=4`, widać 100% kadru (JS ustawia `aspect-ratio` z pliku), przycisk dźwięku tylko na 4 z głosem (home, onkologia, dno ×2).
@@ -30,6 +38,9 @@ updated: 2026-09-10
 - ⛔ `Downloads/Samanta/holiestetyka-theme/` z 24.06 — nie wgrywać.
 
 ## Kluczowe decyzje i ustalenia
+- **10.09 wieczór, Samanta: „Źle wszystko" + „Zdjęcia są złe".** Adrian: „Może sama wstawisz odpowiednie zdjęcia w odpowiednie miejsca? Dam Ci panel." Ona: „No! Mega". Prosiła o możliwość wstawiania **większej liczby zdjęć pomiędzy tekstami** — stąd sekcje „Zdjęcie" i „Zdjęcia obok siebie". Nie dobieramy już zdjęć za nią; ona układa, my dajemy narzędzie.
+- Panel: pliki `holiestetyka/inc/{admin-panel,acf-ux,acf-layouts}.php` + `assets/css/{admin-acf,blocks}.css`, spięte w `functions.php` pętlą z `file_exists` (brak pliku nie wywala strony). Wdrożenie: `scratchpad/deploy-panel.sh` — najpierw pliki, `php -l` NA SERWERZE, dopiero potem `functions.php`.
+- Layouty dokładane przez `acf/load_field` (priorytet 5, przed `acf-ux` na 10) **muszą przejść przez `acf_get_valid_field()`** i dostać `parent`/`parent_layout`/`_name` — inaczej SCF rzuca „Undefined array key _name" i nie mapuje wartości do wiersza.
 - Źródło prawdy treści: maile + WhatsApp (eksport „Zioła 2” pełniejszy) + `uwagi-samanty-2026-07.md`.
 - 10.07 Samanta: „Mamy komplet” / „Tak, odpalamy!”. Adrian wdrażał 14.07.
 - Logo 00000649 = Holimedica. Domena i copy = Holiestetyka. 14.07 wpięte 1:1 na polecenie Adriana.
@@ -47,6 +58,10 @@ updated: 2026-09-10
 Wysłać Samancie link z prośbą o sprawdzenie na telefonie po odświeżeniu i potwierdzenie telefonu/godzin (nie pisać „wszystko ogarnięte”). **Poprosić ją o własne zdjęcie (portret) i 2–3 zdjęcia gabinetu** — hero mają teraz stock z Pexels, jej własne zdjęcia byłyby mocniejsze — bez tego sekcje „Mgr Samanta Zioła” mają zdjęcie dłoni/terapii, a hero powtarzają jedną grafikę AI. Potem: brakujące filmiki (kosmetologia/proces/kontakt, talking-head o bliznach zamiast slajdów), decyzja o banerze cookie (zamienić na wąski pasek na dole). Marka — decyzja Adriana.
 
 ## Czego NIE robić
+- Nie włączać z powrotem Gutenberga dla stron — sekcje ACF wpadają do zwiniętych „Metaboksów" i klientka widzi pusty ekran.
+- Nie ukrywać pól ACF przez `return false` w `acf/prepare_field` — wartość ginie przy zapisie. Ukrywaj klasą CSS.
+- Nie dawać Samancie roli administratora ani `manage_options`.
+- Nie zmieniać kluczy `layout_holi_*` / `field_holi_*` — pod nimi siedzą jej treści.
 - Nie rsync lokalnego `Downloads/Samanta/holiestetyka-theme/` na prod.
 - Nie rebrandować na Holimedica bez „tak”.
 - Nie publikować identyfikowalnych twarzy pacjentek ani surowych filmów z piersiami.
@@ -76,6 +91,7 @@ Wysłać Samancie link z prośbą o sprawdzenie na telefonie po odświeżeniu i 
 - Makiety graficzki (źródło 307 i 335): `Downloads/Samanta/Grafiki od graficzki/WhatsApp Image 2026-06-12 at 11.41.39.jpeg` (Terapie łączone) i `…11.41.45.jpeg` (Co nas wyróżnia)
 
 ## Dziennik sesji
+- 2026-09-10 (5) — panel w WP Admin dla Samanty: konto `samanta`/rola `holi_owner`, uproszczone menu, kokpit z kafelkami stron, instrukcja po polsku, czytelne sekcje z miniaturami, trzy nowe sekcje (Zdjęcie / Zdjęcia obok siebie / Film), klasyczny edytor zamiast Gutenberga. Przy okazji: cache po zapisie (był wyłączony), HTTPS na całej stronie, blokada edytora plików. Trzy agenty Opus 5 pisały równolegle, koordynacja i integracja po mojej stronie.
 - 2026-09-10 (4) — audyt nachodzenia, czytelności i kadrowania na mobile (26 przebiegów, 2 rozmiary telefonu). Naprawione: nachodzenie podpisu na onkologii, hero home z 29% na 55% kadru, kadry lasera i operacji, kadr onkologii, czcionki 11→12 px. Filmy sprawdzone: 9/9 gra i widać cały kadr.
 - 2026-09-10 (3) — 9 nowych hero z Pexels (bez twarzy, 3:2, 1800×1200) zamiast rozmytego 307 i pustych kadrów. Naprawiony baner cookie (62%→30% ekranu) i menu mobilne, które na iPhone SE nie dawało się przewinąć. QA: 26 przebiegów, 0 uwag. Brak klucza do generatora obrazów (GOOGLE_API_KEY) — stąd stock zamiast generowania.
 - 2026-09-10 (2) — 4 uwagi WA 11:49–11:52: pracownica zamiast Samanty, powtórki 307, onkologiczna w bliznach, modelowanie w operacjach, „mega duże” zdjęcia. Podmiany zdjęć na 9 stronach, nowy kadr 335, galerie ~200 px, hero home pod menu. Brak zdjęcia Samanty — trzeba o nie poprosić.
